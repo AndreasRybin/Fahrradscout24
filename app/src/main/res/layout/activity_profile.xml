@@ -19,10 +19,11 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/imgView"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
+                android:clickable="true"
                 android:src="@drawable/ic_account_box_black_24dp" />
             <!-- TODO Profile Picture DB -->
             <TextView
@@ -52,9 +53,10 @@
     </RelativeLayout>
 
     <ScrollView
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="290dp"
         android:layout_gravity="center"
+        android:minHeight="120dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -67,26 +69,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:orientation="horizontal"
-                android:paddingLeft="25dp"
                 android:focusable="true"
-                android:focusableInTouchMode="true">
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/btnDate"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:src="@drawable/ic_date_range_black_24dp" />
+                    android:layout_gravity="left"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:requiresFadingEdge="horizontal|vertical"
+                    android:src="@drawable/ic_icons8_calendar" />
 
                 <EditText
-                    android:id="@+id/edit_text_date"
+                    android:id="@+id/tvSelectedDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:hint="Date of Birth"
+                    android:layout_marginRight="15dp"
+                    android:hint="Date of Birth: dd.mm.yyyy"
                     android:imeOptions="actionDone"
                     android:inputType="date"
                     android:text=""
                     android:textColorLink="@color/colorPrimary" />
+
                 <!-- TODO DB-->
             </LinearLayout>
 
@@ -94,10 +102,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:orientation="horizontal"
-                android:paddingLeft="25dp"
                 android:focusable="true"
-                android:focusableInTouchMode="true">
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
 
                 <ImageView
                     android:layout_width="36dp"
@@ -109,6 +117,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="15dp"
                     android:hint="Adress"
                     android:imeOptions="actionDone"
                     android:inputType="textPostalAddress"
@@ -121,10 +130,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:orientation="horizontal"
-                android:paddingLeft="25dp"
                 android:focusable="true"
-                android:focusableInTouchMode="true">
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
 
                 <ImageView
                     android:layout_width="36dp"
@@ -136,6 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="15dp"
                     android:hint="E-Mail"
                     android:imeOptions="actionDone"
                     android:inputType="textWebEmailAddress"
@@ -149,10 +159,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:orientation="horizontal"
-                android:paddingLeft="25dp"
                 android:focusable="true"
-                android:focusableInTouchMode="true">
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
 
                 <ImageView
                     android:layout_width="36dp"
@@ -164,6 +174,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="15dp"
                     android:focusable="auto"
                     android:hint="Phone"
                     android:imeOptions="actionDone"
@@ -189,13 +200,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginRight="5dp"
                     android:paddingLeft="20dp"
                     android:text="Push Notification"
                     android:textStyle="bold" />
 
                 <Switch
                     android:id="@+id/switchNotification"
-                    style="@style/customSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -207,20 +218,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end">
+        android:layout_height="60dp"
+        android:gravity="end"
+        android:minHeight="60dp">
 
         <Button
             android:id="@+id/button_profile_save"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginRight="40dp"
             android:text="Save" />
 
         <Button
             android:id="@+id/button_profile_discard"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginRight="15dp"
             android:text="Discard"
             android:textColorLink="@color/colorPrimary" />
