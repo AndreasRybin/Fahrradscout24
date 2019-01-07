@@ -19,12 +19,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
@@ -160,6 +163,39 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });}
         //end switch listener
+        //start save changes
+        Button btnProfileSave = (Button) findViewById(R.id.btn_profile_save);
+
+        btnProfileSave.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //get Data from texts
+                EditText tvBirthdate = (EditText) findViewById(R.id.tvSelectedDate);
+                EditText tvAdress = (EditText) findViewById(R.id.edit_text_adress);
+                EditText tvMail = (EditText) findViewById(R.id.edit_text_mail);
+                EditText tvPhone = (EditText) findViewById(R.id.edit_text_phone);
+
+                //tvPhone.getText();
+                //speichern, return code abwarten und toast ausgeben
+                Toast.makeText(ProfileActivity.this,"Saving sucessful",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        //discard changes
+        final Button btnProfileDiscard = (Button) findViewById(R.id.btn_profile_discard);
+        btnProfileDiscard.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //get Data from texts
+                EditText tvBirthdate = (EditText) findViewById(R.id.tvSelectedDate);
+                EditText tvAdress = (EditText) findViewById(R.id.edit_text_adress);
+                EditText tvMail = (EditText) findViewById(R.id.edit_text_mail);
+                EditText tvPhone = (EditText) findViewById(R.id.edit_text_phone);
+
+                //tvPhone.setText();
+                //speichern, return code abwarten und toast ausgeben
+                Toast.makeText(ProfileActivity.this,"Changes discarted",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     //getting awnser from permission question
