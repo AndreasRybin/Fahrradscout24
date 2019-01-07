@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,10 +19,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,6 +42,8 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+
 
         //start calendar button
         ImageButton selectDate = findViewById(R.id.btnDate);
@@ -68,8 +75,49 @@ public class ProfileActivity extends AppCompatActivity {
         });
         //end calendarbutton
 
+
         //load picture
-        ImageView clickLoadImage = (ImageView) findViewById(R.id.imgView);
+        // do not execute this when in landscape
+        //int display_mode = getResources().getConfiguration().orientation;
+
+        //if (display_mode == Configuration.ORIENTATION_PORTRAIT) {
+        ImageButton btnClickLoadImage = (ImageButton) findViewById(R.id.btnProfilePic);
+            btnClickLoadImage.setOnClickListener(new View.OnClickListener() {
+
+                                                  @Override
+                                                  public void onClick(View arg0) {
+                                                      if (ContextCompat.checkSelfPermission(ProfileActivity.this,
+                                                              Manifest.permission.READ_EXTERNAL_STORAGE)
+                                                              != PackageManager.PERMISSION_GRANTED) {
+
+                                                          // Permission is not granted
+                                                          // Should we show an explanation?
+                                                          if (ActivityCompat.shouldShowRequestPermissionRationale(ProfileActivity.this,
+                                                                  Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                                                              // Show an explanation to the user *asynchronously* -- don't block
+                                                              // this thread waiting for the user's response! After the user
+                                                              // sees the explanation, try again to request the permission.
+                                                          } else {
+                                                              // No explanation needed; request the permission
+                                                              ActivityCompat.requestPermissions(ProfileActivity.this,
+                                                                      new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                                                      MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+
+                                                              // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                                                              // app-defined int constant. The callback method gets the
+                                                              // result of the request.
+                                                          }
+                                                      } else {
+                                                          // Permission has already been granted
+                                                          Intent i = new Intent(
+                                                                  Intent.ACTION_PICK,
+                                                                  android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                                          startActivityForResult(i, RESULT_LOAD_IMAGE);
+                                                      }
+
+                                                  }
+                                              });
+        ImageView clickLoadImage = (ImageView) findViewById(R.id.imgProfilePic);
         clickLoadImage.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -77,34 +125,41 @@ public class ProfileActivity extends AppCompatActivity {
                 if (ContextCompat.checkSelfPermission(ProfileActivity.this,
                         Manifest.permission.READ_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED) {
-
-                    // Permission is not granted
-                    // Should we show an explanation?
                     if (ActivityCompat.shouldShowRequestPermissionRationale(ProfileActivity.this,
                             Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                        // Show an explanation to the user *asynchronously* -- don't block
-                        // this thread waiting for the user's response! After the user
-                        // sees the explanation, try again to request the permission.
                     } else {
-                        // No explanation needed; request the permission
                         ActivityCompat.requestPermissions(ProfileActivity.this,
                                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                                 MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-
-                        // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                        // app-defined int constant. The callback method gets the
-                        // result of the request.
                     }
                 } else {
-                    // Permission has already been granted
                     Intent i = new Intent(
                             Intent.ACTION_PICK,
                             android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(i, RESULT_LOAD_IMAGE);
                 }
-
             }
         });
+    //}
+    //end load picture
+    //start switch listener
+        Switch notifiactions = (Switch) findViewById(R.id.switchNotification);
+        if(notifiactions != null){
+        notifiactions.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ImageView imageNotifications = (ImageView) findViewById(R.id.imgNotifications);
+                if(isChecked) {
+                    //do stuff when Switch is ON
+                    imageNotifications.setImageDrawable(getResources().getDrawable(R.drawable.ic_notifications_active_black_24dp));
+                } else {
+                    //do stuff when Switch if OFF
+                    imageNotifications.setImageDrawable(getResources().getDrawable(R.drawable.ic_notifications_black_24dp));
+                }
+                // do something, the isChecked will be
+                // true if the switch is in the On position
+            }
+        });}
+        //end switch listener
     }
 
     //getting awnser from permission question
@@ -162,7 +217,7 @@ public class ProfileActivity extends AppCompatActivity {
             //converting image to bitmap
             Bitmap img = BitmapFactory.decodeStream(fileInputStream);
 
-            ImageView imageView = (ImageView) findViewById(R.id.imgView);
+            ImageView imageView = (ImageView) findViewById(R.id.imgProfilePic);
             Bitmap picture = BitmapFactory.decodeFile(picturePath);
             //resize bitmap
             final int maxSize = 120;
@@ -184,9 +239,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         }
-
-
-
 
 
 

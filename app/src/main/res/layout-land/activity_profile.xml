@@ -8,234 +8,266 @@
     android:orientation="vertical"
     tools:context="hska.fahrradscout24.MainActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="130dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradientbackground"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgProfilePic"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/roundcorner"
+                        android:clickable="true"
+                        android:src="@drawable/ic_account_box_white_24dp" />
+                    <!-- TODO Profile Picture DB -->
+                    <ImageButton
+                        android:id="@+id/btnProfilePic"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/roundcorner"
+                        app:srcCompat="@drawable/ic_linked_camera_black_24dp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="30dp"
+                    android:text="Username"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+                <!-- TODO User Name DB-->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="200dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="3"></LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradientbackground"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/ic_account_box_black_24dp"
-                android:visibility="gone" />
-            <!-- TODO Profile Picture DB -->
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:text="Username"
-                android:textAlignment="center"
-                android:textColor="#fff"
-                android:textSize="21sp"
-                android:textStyle="bold" />
-            <!-- TODO User Name DB-->
-            <android.support.v7.widget.CardView
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
+                android:layout_height="230dp"
+                android:layout_gravity="center"
+                android:minHeight="120dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:weightSum="0"></LinearLayout>
-            </android.support.v7.widget.CardView>
-        </LinearLayout>
-    </RelativeLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="187dp"
-        android:layout_gravity="center"
-        android:minHeight="120dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:orientation="horizontal"
-                android:paddingLeft="25dp">
-
-                <ImageButton
-                    android:id="@+id/btnDate"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_gravity="left"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:requiresFadingEdge="horizontal|vertical"
-                    android:src="@drawable/ic_icons8_calendar" />
-
-                <EditText
-                    android:id="@+id/tvSelectedDate"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="15dp"
-                    android:hint="Date of Birth: dd.mm.yyyy"
-                    android:imeOptions="actionDone"
-                    android:inputType="date"
-                    android:text=""
-                    android:textColorLink="@color/colorPrimary" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
 
-                <!-- TODO DB-->
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp">
+
+                        <ImageButton
+                            android:id="@+id/btnDate"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_gravity="left"
+                            android:background="@drawable/borderactionbtn"
+                            android:requiresFadingEdge="horizontal|vertical"
+                            android:src="@drawable/ic_icons8_calendar" />
+
+                        <EditText
+                            android:id="@+id/tvSelectedDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="15dp"
+                            android:hint="Date of Birth: dd.mm.yyyy"
+                            android:imeOptions="actionDone"
+                            android:inputType="date"
+                            android:text=""
+                            android:textColorLink="@color/colorPrimary" />
+
+                        <!-- TODO DB-->
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/ic_home_black_24dp" />
+
+                        <EditText
+                            android:id="@+id/edit_text_adress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="15dp"
+                            android:hint="Adress"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPostalAddress"
+                            android:text=""
+                            android:textColorLink="@color/colorPrimary" />
+                        <!-- TODO Mail DB-->
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/ic_message_black_24dp" />
+
+                        <EditText
+                            android:id="@+id/edit_text_mail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="15dp"
+                            android:hint="E-Mail"
+                            android:imeOptions="actionDone"
+                            android:inputType="textWebEmailAddress"
+                            android:text=""
+                            android:textColorLink="@color/colorPrimary" />
+                        <!-- TODO Mail DB-->
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/ic_phone_black_24dp" />
+
+                        <EditText
+                            android:id="@+id/edit_text_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="15dp"
+                            android:focusable="auto"
+                            android:hint="Phone"
+                            android:imeOptions="actionDone"
+                            android:inputType="phone"
+                            android:text=""
+                            android:textColorLink="@color/colorPrimary" />
+                        <!--TODO Phone DB -->
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp">
+
+                        <ImageView
+                            android:id="@+id/imgNotifications"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/ic_notifications_black_24dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="5dp"
+                            android:paddingLeft="20dp"
+                            android:text="Push Notification"
+                            android:textStyle="bold" />
+
+                        <Switch
+                            android:id="@+id/switchNotification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1" />
+                        <!--TODO an aus regler -->
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:orientation="horizontal"
-                android:paddingLeft="25dp">
+                android:layout_height="60dp"
+                android:background="@drawable/borderlayout"
+                android:backgroundTint="@color/colorPrimary"
+                android:gravity="end"
+                android:minHeight="60dp">
 
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:src="@drawable/ic_home_black_24dp" />
-
-                <EditText
-                    android:id="@+id/edit_text_adress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="15dp"
-                    android:hint="Adress"
-                    android:imeOptions="actionDone"
-                    android:inputType="textPostalAddress"
-                    android:text=""
-                    android:textColorLink="@color/colorPrimary" />
-                <!-- TODO Mail DB-->
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:orientation="horizontal"
-                android:paddingLeft="25dp">
-
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:src="@drawable/ic_message_black_24dp" />
-
-                <EditText
-                    android:id="@+id/edit_text_mail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="15dp"
-                    android:hint="E-Mail"
-                    android:imeOptions="actionDone"
-                    android:inputType="textWebEmailAddress"
-                    android:text=""
-                    android:textColorLink="@color/colorPrimary" />
-                <!-- TODO Mail DB-->
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:orientation="horizontal"
-                android:paddingLeft="25dp">
-
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:src="@drawable/ic_phone_black_24dp" />
-
-                <EditText
-                    android:id="@+id/edit_text_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="15dp"
-                    android:focusable="auto"
-                    android:hint="Phone"
-                    android:imeOptions="actionDone"
-                    android:inputType="phone"
-                    android:text=""
-                    android:textColorLink="@color/colorPrimary" />
-                <!--TODO Phone DB -->
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:paddingLeft="25dp">
-
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:src="@drawable/ic_notifications_black_24dp" />
-
-                <TextView
+                <Button
+                    android:id="@+id/btn_profile_discard"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="5dp"
-                    android:paddingLeft="20dp"
-                    android:text="Push Notification"
-                    android:textStyle="bold" />
+                    android:layout_height="50dp"
+                    android:layout_marginRight="40dp"
+                    android:text="Discard"
+                    android:textColorLink="@color/colorPrimary" />
 
-                <Switch
-                    android:id="@+id/switchNotification"
+                <Button
+                    android:id="@+id/btn__profile_save"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1" />
-                <!--TODO an aus regler -->
+                    android:layout_height="50dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Save" />
+                <!-- TODO link them to center the buttons -->
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="end"
-        android:minHeight="60dp">
-
-        <Button
-            android:id="@+id/button_profile_save"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginRight="40dp"
-            android:text="Save" />
-
-        <Button
-            android:id="@+id/button_profile_discard"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginRight="15dp"
-            android:text="Discard"
-            android:textColorLink="@color/colorPrimary" />
-        <!-- TODO link them to center the buttons -->
     </LinearLayout>
+
+
 
 </LinearLayout>

@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission-group.SENSORS" />
     <uses-permission android:name="android.permission-group.SMS" />
     <uses-permission android:name="android.permission-group.STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"

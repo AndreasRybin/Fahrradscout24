@@ -9,7 +9,7 @@
         android:icon="@drawable/ic_menu_black_24dp"
         app:showAsAction="ifRoom|withText"
         android:layout_width="match_parent"
-        android:background="#008577"
+        android:background="@color/colorPrimary"
         >
         <menu
             android:layout_width="match_parent"
@@ -18,19 +18,19 @@
                 android:id="@+id/menuItemProfile"
                 android:icon="@drawable/ic_account_box_black_24dp"
                 android:title="Profile"
-                android:onClick="profileClick"></item>
-            <item
-                android:id="@+id/menuItemSettingsicon"
-                android:icon="@drawable/ic_settings_black_24dp"
-                android:title="Settings"></item>
-            <item
-                android:id="@+id/menuItemHelp"
-                android:icon="@drawable/ic_help_outline_black_24dp"
-                android:title="Help"></item>
+                android:onClick="profileClick"/>
             <item
                 android:id="@+id/menuItemMessage"
                 android:icon="@drawable/ic_message_black_24dp"
-                android:title="Open Chat Client"></item>
+                android:title="Open Chat Client"/>
+            <item
+                android:id="@+id/menuItemSettingsicon"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="Settings"/>
+            <item
+                android:id="@+id/menuItemHelp"
+                android:icon="@drawable/ic_help_outline_black_24dp"
+                android:title="Help"/>
         </menu>
     </item>
 </menu>
