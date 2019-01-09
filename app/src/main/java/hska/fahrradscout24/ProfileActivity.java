@@ -42,6 +42,8 @@ public class ProfileActivity extends AppCompatActivity {
     private static int RESULT_LOAD_IMAGE = 1; //load picture
 
 
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
@@ -196,6 +198,8 @@ public class ProfileActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
     //getting awnser from permission question
@@ -272,9 +276,11 @@ public class ProfileActivity extends AppCompatActivity {
             //Bitmap resizedBitmap = picture;
             Bitmap resizedBitmap = Bitmap.createScaledBitmap(picture, outWidth, outHeight, true);
             imageView.setImageBitmap(resizedBitmap);
+            //TODO save picture in orientation change
         }
 
         }
+
 
 
 

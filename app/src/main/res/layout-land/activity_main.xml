@@ -54,12 +54,12 @@
                     android:textColorLink="@color/colorPrimary" />
 
                 <Button
-                    android:id="@+id/btnForgotPass"
+                    android:id="@+id/btnSignIn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="47dp"
                     android:layout_marginTop="30dp"
-                    android:text="Forgot Password" />
+                    android:text="Sign In" />
 
                 <Button
                     android:id="@+id/btnLogin"
