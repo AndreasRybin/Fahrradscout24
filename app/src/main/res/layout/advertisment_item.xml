@@ -5,27 +5,33 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/tv_emp_id"
+        android:id="@+id/tv_adv_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID" />
+        android:text="anzeige_id" />
 
     <TextView
-        android:id="@+id/tv_emp_name"
+        android:id="@+id/tv_adv_fahrrad_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="name" />
+        android:text="fahrrad_id" />
 
     <TextView
-        android:id="@+id/tv_emp_email"
+        android:id="@+id/tv_adv_erstelldatum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email" />
+        android:text="erstelldatum" />
 
     <TextView
-        android:id="@+id/tv_emp_address"
+        android:id="@+id/tv_adv_ablaufdatum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Address" />
+        android:text="ablaufdatum" />
+
+    <TextView
+        android:id="@+id/tv_adv_preis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="preis" />
 
 </LinearLayout>

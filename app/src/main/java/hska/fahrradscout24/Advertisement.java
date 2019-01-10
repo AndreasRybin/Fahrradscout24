@@ -2,40 +2,57 @@ package hska.fahrradscout24;
 
 public class Advertisement {
 
-    int code;
-    String name, email, address;
+    int id, fahrrad_id, preis;
+    String erstelldatum, ablaufdatum;
 
-    /* Setters */
-    public void setCode(int code) {
-        this.code = code;
+    public Advertisement() {
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Advertisement(int id, int fahrrad_id, String erstelldatum, String ablaufdatum, int preis) {
+        this.id = id;
+        this.fahrrad_id = fahrrad_id;
+        this.preis = preis;
+        this.erstelldatum = erstelldatum;
+        this.ablaufdatum = ablaufdatum;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public int getId() {
+        return id;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public int getFahrrad_id() {
+        return fahrrad_id;
     }
 
-    /* Getters */
-    public int getCode() {
-        return this.code;
+    public int getPreis() {
+        return preis;
     }
 
-    public String getName() {
-        return this.name;
+    public String getErstelldatum() {
+        return erstelldatum;
     }
 
-    public String getEmail() {
-        return this.email;
+    public String getAblaufdatum() {
+        return ablaufdatum;
     }
 
-    public String getAddress() {
-        return this.address;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFahrrad_id(int fahrrad_id) {
+        this.fahrrad_id = fahrrad_id;
+    }
+
+    public void setPreis(int preis) {
+        this.preis = preis;
+    }
+
+    public void setErstelldatum(String erstelldatum) {
+        this.erstelldatum = erstelldatum;
+    }
+
+    public void setAblaufdatum(String ablaufdatum) {
+        this.ablaufdatum = ablaufdatum;
     }
 }

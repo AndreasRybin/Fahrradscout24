@@ -53,7 +53,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "(art_bremsen_id integer primary key AUTOINCREMENT," +
             "art text not null);";
     private static final String CREATE_ART_GANGSCHALTUNG_TABLE = "create table if not exists Art_gangschaltung" +
-            "(art_gangschaltung_id primary key AUTOINCREMENT," +
+            "(art_gangschaltung_id integer primary key AUTOINCREMENT," +
             "art text not null);";
 
     public DbHandler(Context context) {

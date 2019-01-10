@@ -44,17 +44,21 @@ public class AdvertisementAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.advertisment_item, null);
 
-        TextView codeTextView = convertView.findViewById(R.id.tv_emp_id);
-        TextView nameTextView = convertView.findViewById(R.id.tv_emp_name);
-        TextView emailTextView = convertView.findViewById(R.id.tv_emp_email);
-        TextView addressTextView = convertView.findViewById(R.id.tv_emp_address);
+        TextView anzeigeIdIdTextView = convertView.findViewById(R.id.tv_adv_id);
+        TextView fahrradIdTextView = convertView.findViewById(R.id.tv_adv_fahrrad_id);
+        TextView erstelldatumTextView = convertView.findViewById(R.id.tv_adv_erstelldatum);
+        TextView ablaufdatumTextView = convertView.findViewById(R.id.tv_adv_ablaufdatum);
+        TextView preisTextView = convertView.findViewById(R.id.tv_adv_preis);
+
 
         Advertisement e = new Advertisement();
         e = empList.get(position);
-        codeTextView.setText("Code: " + String.valueOf(e.getCode()));
-        nameTextView.setText("Name: " + e.getName());
-        emailTextView.setText("Email: " + e.getEmail());
-        addressTextView.setText("Address: " + e.getAddress());
+        anzeigeIdIdTextView.setText("AnzeigeId: " + String.valueOf(e.getId()));
+        fahrradIdTextView.setText("FahrradId: " + e.getFahrrad_id());
+        erstelldatumTextView.setText("erstelldatum: " + e.getErstelldatum());
+        ablaufdatumTextView.setText("ablaufdatum: " + e.getAblaufdatum());
+        preisTextView.setText("preis" + e.getPreis());
+
         return convertView;
     }
 

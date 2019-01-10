@@ -17,7 +17,7 @@ public class AdvertisementActivity extends Activity {
 
     String msg = "Android : AdvertisementActivity : ";
     GridView gridView;
-    ArrayList<Advertisement> employeeList;
+    ArrayList<Advertisement> advertisementList;
     AdvertisementAdapter adapter;
 
     /** Called when the activity is first created. */
@@ -27,14 +27,13 @@ public class AdvertisementActivity extends Activity {
         setContentView(R.layout.activity_main);
         Log.d(msg, "The onCreate() event");
 
-        gridView = (GridView) findViewById(R.id.gv_emp);
+        gridView = (GridView) findViewById(R.id.gv_adv);
 
-        //TODO Ahmed Database helper class
         DbAdapter databaseHelper = new DbAdapter(AdvertisementActivity.this);
-        employeeList = new ArrayList<Advertisement>();
-        //TODO GetAllAdvertisement muss in der Databaase helper noich geschrieben werden.
-        employeeList = databaseHelper.getAllAdvertisement();
-        adapter = new AdvertisementAdapter(AdvertisementActivity.this, employeeList);
+        advertisementList = new ArrayList<Advertisement>();
+
+        advertisementList = databaseHelper.getAllAdvertisement();
+        adapter = new AdvertisementAdapter(AdvertisementActivity.this, advertisementList);
         gridView.setAdapter(adapter);
 
 
@@ -88,7 +87,7 @@ public class AdvertisementActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.tv_emp_id) {
+        if (id == R.id.tv_adv_id) {
             return true;
         }
         return super.onOptionsItemSelected(item);
