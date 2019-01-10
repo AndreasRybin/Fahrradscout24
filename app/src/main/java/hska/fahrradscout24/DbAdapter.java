@@ -1,4 +1,4 @@
-package com.example.bakir.database;
+package hska.fahrradscout24;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -42,11 +42,12 @@ public class DbAdapter {
         return database.insert("benutzer",null,values);
 
     }
-    public long createAnzeige (int fahrrad_id, String erstelldatum, String ablaufdatum) {
+    public long createAnzeige (int fahrrad_id, String erstelldatum, String ablaufdatum, int preis) {
         ContentValues values = new ContentValues();
-        values.put("fahrrad_id",fahrrad_id);
-        values.put("erstelldatum",erstelldatum);
-        values.put("ablaufdatum",ablaufdatum);
+        values.put("fahrrad_id", fahrrad_id);
+        values.put("erstelldatum", erstelldatum);
+        values.put("ablaufdatum", ablaufdatum);
+        values.put("preis", preis);
         return database.insert("anzeige",null,values);
 
     }

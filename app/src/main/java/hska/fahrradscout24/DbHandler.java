@@ -1,4 +1,4 @@
-package com.example.bakir.database;
+package hska.fahrradscout24;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -38,7 +38,8 @@ public class DbHandler extends SQLiteOpenHelper {
             "(anzeige_id integer primary key AUTOINCREMENT," +
             "fahrrad_id integer not null," +
             "erstelldatum text not null," +
-            "ablaufdatum text not null);";
+            "ablaufdatum text not null," +
+            "preis integer not null);";
     private static final String CREATE_AUKTION_TABLE = "create table if not exists Auktion" +
             "(auktion_id integer primary key AUTOINCREMENT," +
             "fahrrad integer not null," +
