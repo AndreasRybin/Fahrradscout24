@@ -30,7 +30,7 @@ public class AdvertisementActivity extends Activity {
         gridView = (GridView) findViewById(R.id.gv_emp);
 
         //TODO Ahmed Database helper class
-        DatabaseHelper databaseHelper = new DatabaseHelper(AdvertisementActivity.this);
+        DbAdapter databaseHelper = new DbAdapter(AdvertisementActivity.this);
         employeeList = new ArrayList<Advertisement>();
         //TODO GetAllAdvertisement muss in der Databaase helper noich geschrieben werden.
         employeeList = databaseHelper.getAllAdvertisement();
