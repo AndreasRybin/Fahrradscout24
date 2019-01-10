@@ -1,9 +1,12 @@
-package com.example.bakir.database;
+package hska.fahrradscout24;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 /**
  * Created by bakir on 07.01.2019.
@@ -141,6 +144,35 @@ public class DbAdapter {
         }
         return passwort;
 
+    }
+
+    /* Method for fetching record from Database */
+    public ArrayList<Advertisement> getAllAdvertisement(){
+
+        String query = "SELECT * FROM " + Anzeige;
+        ArrayList<Advertisement> employees = new ArrayList<Advertisement>();
+        SQLiteDatabase database = getReadableDatabase();
+        Cursor c = database.rawQuery(query, null);
+        if (c != null) {
+            while (c.moveToNext()) {
+                int code = c.getInt(c.getColumnIndex(KEY_CODE));
+                String name = c.getString(c.getColumnIndex(KEY_NAME));
+                String email = c.getString(c.getColumnIndex(KEY_EMAIL));
+                String address = c.getString(c.getColumnIndex(KEY_ADDRESS));
+
+                Advertisement emp = new Advertisement();
+                emp.setCode(code);
+                emp.setName(name);
+                emp.setEmail(email);
+                emp.setAddress(address);
+
+                Log.v("DBHelper: ", "Name: " + name);
+                Log.v("DBHelper: ", "Code: " + code);
+                Log.v("DBHelper: ", "Email: " + email);
+                Log.v("DBHelper: ", "Address: " + address);
+
+                employees.add(emp);
+            }
     }
 
 

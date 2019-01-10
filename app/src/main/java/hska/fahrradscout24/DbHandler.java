@@ -1,4 +1,4 @@
-package com.example.bakir.database;
+package hska.fahrradscout24;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

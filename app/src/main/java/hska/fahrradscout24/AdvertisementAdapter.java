@@ -44,10 +44,10 @@ public class AdvertisementAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.advertisment_item, null);
 
-        TextView codeTextView = (TextView) convertView.findViewById(R.id.tv_emp_id);
-        TextView nameTextView = (TextView) convertView.findViewById(R.id.tv_emp_name);
-        TextView emailTextView = (TextView) convertView.findViewById(R.id.tv_emp_email);
-        TextView addressTextView = (TextView) convertView.findViewById(R.id.tv_emp_address);
+        TextView codeTextView = convertView.findViewById(R.id.tv_emp_id);
+        TextView nameTextView = convertView.findViewById(R.id.tv_emp_name);
+        TextView emailTextView = convertView.findViewById(R.id.tv_emp_email);
+        TextView addressTextView = convertView.findViewById(R.id.tv_emp_address);
 
         Advertisement e = new Advertisement();
         e = empList.get(position);
