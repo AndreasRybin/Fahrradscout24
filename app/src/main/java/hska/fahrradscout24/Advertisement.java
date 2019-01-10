@@ -1,6 +1,6 @@
 package hska.fahrradscout24;
 
-public class Employee {
+public class Advertisement {
 
     int code;
     String name, email, address;

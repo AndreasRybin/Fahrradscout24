@@ -1,6 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hska.fahrradscout24.AdvertisementActivity" >
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/et_empcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hello_world" />
+
+    <GridView
+        android:id="@+id/gv_emp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="4dp"
+        android:layout_below="@+id/et_empcode" >
+    </GridView>
+
+</RelativeLayout>

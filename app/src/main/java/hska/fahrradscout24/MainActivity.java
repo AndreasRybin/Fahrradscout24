@@ -1,8 +1,8 @@
 package hska.fahrradscout24;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 // TODO Andi hier muss deine Activity anstatt ProfileActivity rein, AdvertisementActivity is iwie buggy
-                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                startActivity(new Intent(MainActivity.this,AdvertisementActivity.class));
             };
         });
     }
