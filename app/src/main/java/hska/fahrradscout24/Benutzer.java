@@ -1,4 +1,4 @@
-package com.example.bakir.database;
+package hska.fahrradscout24;
 
 /**
  * Created by bakir on 10.01.2019.

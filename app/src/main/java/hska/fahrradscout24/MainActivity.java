@@ -12,12 +12,14 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private DbHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //init SQLlite DB
+        db = new DbHandler(this);
         //initialize fresco
         Fresco.initialize(this);
 

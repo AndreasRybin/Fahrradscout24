@@ -146,6 +146,23 @@ public class DbAdapter {
         return passwort;
 
     }
+    public Benutzer getUserByBenutzername(String benutzername){
+        String query = "SELECT * FROM " + "benutzer" + "Where benutzername = '" + benutzername+ "'";
+        SQLiteDatabase database = dbHandler.getReadableDatabase();
+        Cursor cursor = database.rawQuery(query,null);
+        if(cursor!=null) {
+            cursor.moveToFirst();
+            int id = cursor.getInt(0);
+            String adresse = cursor.getString(2);
+            String email = cursor.getString(3);
+            String telefon = cursor.getString(4);
+            String passwort = cursor.getString(5);
+            Benutzer benutzer = new Benutzer(id,benutzername,passwort,email,adresse);
+            return benutzer;
+        }
+
+        return null;
+    }
 
     /* Method for fetching record from Database */
     public ArrayList<Advertisement> getAllAdvertisement() {

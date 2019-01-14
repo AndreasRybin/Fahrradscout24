@@ -40,14 +40,22 @@ public class ProfileActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     //load picture
     private static int RESULT_LOAD_IMAGE = 1; //load picture
-
+    private DbHandler db;
+    private DbAdapter dbAdapter;
 
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        //init SQLlite DB
+        //init SQLlite DB
+        db = new DbHandler(this);
+        Benutzer user = db.getUserByBenutzername("ahmed");
+        //get address
+        EditText etAddress = (EditText)findViewById(R.id.edit_text_adress);
 
+        etAddress.setText(user.getAdresse());
 
 
         //start calendar button
