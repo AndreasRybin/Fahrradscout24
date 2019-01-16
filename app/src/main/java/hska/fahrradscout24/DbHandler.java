@@ -5,9 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by bakir on 07.01.2019.
@@ -26,6 +31,8 @@ public class DbHandler extends SQLiteOpenHelper {
             "adresse text not null UNIQUE," +
             "email text not null," +
             "telefon text not null," +
+            "geburtsdatum text not null," +
+            "profilebild blob," +
             "passwort text not null);";
     //TODO profilbild und geburtsdatum fehlt
 
@@ -60,10 +67,10 @@ public class DbHandler extends SQLiteOpenHelper {
     private static final String CREATE_ART_GANGSCHALTUNG_TABLE = "create table if not exists Art_gangschaltung" +
             "(art_gangschaltung_id integer primary key AUTOINCREMENT," +
             "art text not null);";
-    private static final String ADD_USER_1= "insert into benutzer(benutzername,passwort,email,telefon,adresse)"+
-            "values('ahmed','123456','ahmed@gmail.com','017632322529','musterStrasse 1 76313 Karlsruhe')";
-    private static final String ADD_USER_2= "insert into benutzer(benutzername,passwort,email,telefon,adresse)"+
-            "values('andy','789456','andy@gmail.com','085523529','musterStrasse 2 76313 Karlsruhe')";
+    private static final String ADD_USER_1= "insert into benutzer(benutzername,passwort,email,telefon,adresse,geburtsdatum)"+
+            "values('ahmed','123456','ahmed@gmail.com','017632322529','musterStrasse 1 76313 Karlsruhe', '1993-02-01')";
+    private static final String ADD_USER_2= "insert into benutzer(benutzername,passwort,email,telefon,adresse,geburtsdatum)"+
+            "values('andy','789456','andy@gmail.com','085523529','musterStrasse 2 76313 Karlsruhe','1994-05-92')";
 
 
     public DbHandler(Context context) {
@@ -232,6 +239,7 @@ public class DbHandler extends SQLiteOpenHelper {
         return passwort;
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public Benutzer getUserByBenutzername(String benutzername){
         SQLiteDatabase database = this.getReadableDatabase();
         String query = "SELECT * FROM " + "benutzer " + "Where benutzername = '" + benutzername+ "'";
@@ -243,9 +251,18 @@ public class DbHandler extends SQLiteOpenHelper {
             String adresse = cursor.getString(2);
             String email = cursor.getString(3);
             String telefon = cursor.getString(4);
-            String passwort = cursor.getString(5);
-            Benutzer benutzer = new Benutzer(id,benutzername,passwort,email,adresse);
-            return benutzer;
+            String passwort = cursor.getString(7);
+            String geburtsdatum = cursor.getString(5);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date date = format.parse(geburtsdatum);
+                Benutzer benutzer = new Benutzer(id,benutzername,passwort,email,adresse, date );
+                return benutzer;
+            }
+            catch (ParseException e) {
+                e.printStackTrace();
+            }
+
         }
 
         return null;

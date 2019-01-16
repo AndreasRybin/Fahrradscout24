@@ -1,5 +1,7 @@
 package hska.fahrradscout24;
 
+import java.util.Date;
+
 /**
  * Created by bakir on 10.01.2019.
  */
@@ -10,13 +12,15 @@ public class Benutzer {
     private String passwort;
     private String email;
     private String adresse;
+    private Date geburtsdatum;
 
-    public Benutzer(int benutzer_id, String benutzername, String passwort, String email, String adresse) {
+    public Benutzer(int benutzer_id, String benutzername, String passwort, String email, String adresse, Date geburtsdatum) {
         this.benutzer_id = benutzer_id;
         this.benutzername = benutzername;
         this.passwort = passwort;
         this.email = email;
         this.adresse = adresse;
+        this.geburtsdatum = geburtsdatum;
     }
 
     public int getBenutzer_id() {
@@ -57,5 +61,13 @@ public class Benutzer {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+
+    public Date getGeburtsdatum() {
+        return geburtsdatum;
+    }
+
+    public void setGeburtsdatum(Date geburtsdatum) {
+        this.geburtsdatum = geburtsdatum;
     }
 }

@@ -41,7 +41,6 @@ public class ProfileActivity extends AppCompatActivity {
     //load picture
     private static int RESULT_LOAD_IMAGE = 1; //load picture
     private DbHandler db;
-    private DbAdapter dbAdapter;
 
 
 

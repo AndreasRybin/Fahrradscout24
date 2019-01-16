@@ -29,7 +29,7 @@ public class AdvertisementActivity extends Activity {
 
         gridView = (GridView) findViewById(R.id.gv_adv);
 
-        DbAdapter databaseHelper = new DbAdapter(AdvertisementActivity.this);
+        DbHandler databaseHelper = new DbHandler(AdvertisementActivity.this);
         advertisementList = new ArrayList<Advertisement>();
 
         advertisementList = databaseHelper.getAllAdvertisement();
