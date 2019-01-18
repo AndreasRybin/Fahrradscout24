@@ -63,10 +63,30 @@ public class ProfileActivity extends AppCompatActivity {
         EditText tvMail = (EditText)findViewById(R.id.edit_text_mail);
         EditText tvPhone = (EditText)findViewById(R.id.edit_text_phone);
         EditText tvPassword = (EditText)findViewById(R.id.edit_text_password);
+        ImageView imageView = (ImageView) findViewById(R.id.imgProfilePic);
         Switch   swNotifications = (Switch) findViewById(R.id.switchNotification);
 
         if(user != null) {
             //TODO geburtsdatum, Phone und Notifications einbinden
+            // format blob into bitmap
+            //byte[] byteArray = DBcursor.getBlob(columnIndex);
+            // Bitmap picture = BitmapFactory.decodeByteArray(byteArray, 0 ,byteArray.length);
+            //resize bitmap
+            //final int maxSize = 120;
+            //int outWidth;
+            //int outHeight;
+            //int inWidth = picture.getWidth();
+            //int inHeight = picture.getHeight();
+            //if(inWidth > inHeight){
+            //    outWidth = maxSize;
+            //    outHeight = (inHeight * maxSize) / inWidth;
+            //} else {
+            //    outHeight = maxSize;
+            //    outWidth = (inWidth * maxSize) / inHeight;
+            //}
+            //Bitmap resizedBitmap = picture;
+            //Bitmap resizedBitmap = Bitmap.createScaledBitmap(picture, outWidth, outHeight, true);
+            //imageView.setImageBitmap(resizedBitmap);
             tvUsername.setText(user.getBenutzername());
             tvAddress.setText(user.getAdresse());
             //etBirthDate.setText(user.getGeburtsdatum());
