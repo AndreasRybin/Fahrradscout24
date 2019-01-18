@@ -247,12 +247,12 @@ public class DbHandler extends SQLiteOpenHelper {
         if(cursor!=null) {
             cursor.moveToFirst();
             //TODO getInt() verursacht out of bound exception bei der DB, warsch werden user nicht richtig hinzugefügt
-            int id = cursor.getInt(0);
-            String adresse = cursor.getString(2);
-            String email = cursor.getString(3);
-            String telefon = cursor.getString(4);
-            String passwort = cursor.getString(7);
-            String geburtsdatum = cursor.getString(5);
+            int id = cursor.getInt(cursor.getColumnIndex("benutzer_id"));
+            String adresse = cursor.getString(cursor.getColumnIndex("adresse"));
+            String email = cursor.getString(cursor.getColumnIndex("email"));
+            String telefon = cursor.getString(cursor.getColumnIndex("telefon"));
+            String passwort = cursor.getString(cursor.getColumnIndex("passwort"));
+            String geburtsdatum = cursor.getString(cursor.getColumnIndex("geburtsdatum"));
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             try {
                 Date date = format.parse(geburtsdatum);
