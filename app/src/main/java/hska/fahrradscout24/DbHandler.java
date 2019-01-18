@@ -17,6 +17,8 @@ import java.util.Date;
 /**
  * Created by bakir on 07.01.2019.
  */
+//TODO Getalldvs, getuserbyusername : photo ,
+    //TODO loöschen von user ,
 
 public class DbHandler extends SQLiteOpenHelper {
 
@@ -48,9 +50,10 @@ public class DbHandler extends SQLiteOpenHelper {
             "art_bremsen integer not null);";
     private static final String CREATE_ANZEIGE_TABLE = "create table if not exists Anzeige" +
             "(anzeige_id integer primary key AUTOINCREMENT," +
-            "fahrrad_id integer not null," +
+           // "fahrrad_id integer not null," +
             "erstelldatum text not null," +
             "ablaufdatum text not null," +
+           // "beschreibung text not null," +
             "preis integer not null);";
     private static final String CREATE_AUKTION_TABLE = "create table if not exists Auktion" +
             "(auktion_id integer primary key AUTOINCREMENT," +
@@ -71,6 +74,8 @@ public class DbHandler extends SQLiteOpenHelper {
             "values('ahmed','123456','ahmed@gmail.com','017632322529','musterStrasse 1 76313 Karlsruhe', '1993-02-01')";
     private static final String ADD_USER_2= "insert into benutzer(benutzername,passwort,email,telefon,adresse,geburtsdatum)"+
             "values('andy','789456','andy@gmail.com','085523529','musterStrasse 2 76313 Karlsruhe','1994-05-92')";
+    private static final String ADD_ANZEIGE_1= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,beschreibung) " +
+            "values(1,'18.01.2019','29.01.2019',200)";
 
 
     public DbHandler(Context context) {
@@ -88,6 +93,7 @@ public class DbHandler extends SQLiteOpenHelper {
         database.execSQL(CREATE_ART_GANGSCHALTUNG_TABLE);
         database.execSQL(ADD_USER_1);
         database.execSQL(ADD_USER_2);
+        database.execSQL(ADD_ANZEIGE_1);
 
 
     }
