@@ -55,7 +55,13 @@ public class RegistrationActivity extends AppCompatActivity {
                     }
                     else{
                         //TODO user abspeichern in DB
-                    startActivity(new Intent(RegistrationActivity.this,AdvertisementActivity.class));}}
+                        Intent intentRegistration = new Intent(RegistrationActivity.this,AdvertisementActivity.class);
+                        intentRegistration.putExtra("username", tvUsername.getText().toString());
+                        //myIntent.putExtra("key", value); //Optional parameters
+                        //String value = intent.getStringExtra("key"); //if it's a string you stored.
+                        startActivity(intentRegistration);
+
+                    }}
             };
         });
 
