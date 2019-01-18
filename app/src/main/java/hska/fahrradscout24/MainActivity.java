@@ -30,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,AdvertisementActivity.class));
             };
         });
+
+        Button buttonSignIn= (Button) findViewById(R.id.btnSignIn);
+        buttonSignIn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                // TODO Andi hier muss deine Activity anstatt ProfileActivity rein, AdvertisementActivity is iwie buggy
+                startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
+            };
+        });
     }
 
     //TODO Andi die 2 Methoden bitte ausschneiden und in die Activity nach Login stecken

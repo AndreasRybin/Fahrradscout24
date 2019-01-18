@@ -41,6 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
     //load picture
     private static int RESULT_LOAD_IMAGE = 1; //load picture
     private DbHandler db;
+    private Benutzer user;
 
 
 
@@ -48,9 +49,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         //init SQLlite DB
-        //init SQLlite DB
         db = new DbHandler(this);
-        Benutzer user = db.getUserByBenutzername("ahmed");
+        user = db.getUserByBenutzername("ahmed");
         //get address
         EditText etAddress = (EditText)findViewById(R.id.edit_text_adress);
 
