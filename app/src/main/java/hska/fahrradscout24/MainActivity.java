@@ -42,15 +42,16 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
                 else{
-                startActivity(new Intent(MainActivity.this,AdvertisementActivity.class));}
+                Intent i = new Intent(MainActivity.this,AdvertisementActivity.class);
+                startActivity(i);}
             };
         });
 
         Button buttonSignIn= (Button) findViewById(R.id.btnSignIn);
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                // TODO Andi hier muss deine Activity anstatt ProfileActivity rein, AdvertisementActivity is iwie buggy
-                startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
+                Intent intentRegister = new Intent(MainActivity.this,RegistrationActivity.class);
+                startActivity(intentRegister);
             };
         });
     }
@@ -63,11 +64,14 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
-    public void profileClick(MenuItem menuItem){
-        Intent intent = new Intent(this, ProfileActivity.class);
-        //myIntent.putExtra("key", value); //Optional parameters
-        //String value = intent.getStringExtra("key"); //if it's a string you stored.
-        this.startActivity(intent);
+    public void profileClick(MenuItem menuItem) {
+        Intent intentProfile = new Intent(this, ProfileActivity.class);
+        if (user != null) {
+            intentProfile.putExtra("username", user.getBenutzername()); //Optional parameters}
+            //myIntent.putExtra("key", value); //Optional parameters
+            //String value = intent.getStringExtra("key"); //if it's a string you stored.
+            this.startActivity(intentProfile);
+        }
     }
     //TODO Ende ausschnitt
 

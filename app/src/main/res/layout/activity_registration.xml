@@ -29,7 +29,7 @@
                 android:src="@drawable/ic_account_box_black_24dp" />
 
             <EditText
-                android:id="@+id/edit_text_username"
+                android:id="@+id/edit_text_username_reg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -58,7 +58,7 @@
                 android:src="@drawable/ic_lock_black_24dp" />
 
             <EditText
-                android:id="@+id/edit_text_password"
+                android:id="@+id/edit_text_password_reg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -91,7 +91,7 @@
                 android:src="@drawable/ic_icons8_calendar" />
 
             <EditText
-                android:id="@+id/tvSelectedDate"
+                android:id="@+id/tvSelectedDate_reg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -120,7 +120,7 @@
                 android:src="@drawable/ic_home_black_24dp" />
 
             <EditText
-                android:id="@+id/edit_text_adress"
+                android:id="@+id/edit_text_adress_reg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -148,7 +148,7 @@
                 android:src="@drawable/ic_message_black_24dp" />
 
             <EditText
-                android:id="@+id/edit_text_mail"
+                android:id="@+id/edit_text_mail_reg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -177,7 +177,7 @@
                 android:src="@drawable/ic_phone_black_24dp" />
 
             <EditText
-                android:id="@+id/edit_text_phone"
+                android:id="@+id/edit_text_phone_reg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -192,7 +192,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnSignIn"
+            android:id="@+id/btnSignIn_reg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

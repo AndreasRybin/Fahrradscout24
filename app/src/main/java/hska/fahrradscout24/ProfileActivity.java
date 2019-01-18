@@ -42,16 +42,22 @@ public class ProfileActivity extends AppCompatActivity {
     private static int RESULT_LOAD_IMAGE = 1; //load picture
     private DbHandler db;
     private Benutzer user;
+    private String username;
 
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        //String value = intent.getStringExtra("key"); //if it's a string you stored.
+        username = getIntent().getStringExtra("username");
         //init SQLlite DB
         db = new DbHandler(this);
-        user = db.getUserByBenutzername("ahmed");
+        if(username != "" && username != null){
+        user = db.getUserByBenutzername(username);
+        }
         //get Textviews
+        TextView tvUsername = (TextView)findViewById(R.id.tv_username_profile);
         EditText tvAddress = (EditText)findViewById(R.id.edit_text_adress);
         EditText tvBirthDate = (EditText)findViewById(R.id.tvSelectedDate);
         EditText tvMail = (EditText)findViewById(R.id.edit_text_mail);
@@ -61,6 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         if(user != null) {
             //TODO geburtsdatum, Phone und Notifications einbinden
+            tvUsername.setText(user.getBenutzername());
             tvAddress.setText(user.getAdresse());
             //etBirthDate.setText(user.getGeburtsdatum());
             tvMail.setText(user.getEmail());

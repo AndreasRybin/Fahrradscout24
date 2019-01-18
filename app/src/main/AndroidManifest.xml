@@ -24,7 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +35,10 @@
         <activity
             android:name=".RegistrationActivity"
             android:label="@string/title_activity_registration"
-            android:parentActivityName=".MainActivity">
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
             android:name=".ProfileActivity"
@@ -50,7 +54,8 @@
         <activity
             android:name=".AdvertisementActivity"
             android:label="Advertisment"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
