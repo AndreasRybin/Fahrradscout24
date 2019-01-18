@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent">
+
+    <item
+        android:gravity="center_vertical|start"
+        android:id="@+id/iconHamburger"
+        android:icon="@drawable/ic_menu_black_24dp"
+        app:showAsAction="ifRoom|withText"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        >
+        <menu
+            android:layout_width="match_parent"
+            >
+            <item
+                android:id="@+id/menuItemProfile"
+                android:icon="@drawable/ic_account_box_black_24dp"
+                android:title="Profile"
+                android:onClick="profileClick"/>
+            <item
+                android:id="@+id/menuItemMessage"
+                android:icon="@drawable/ic_message_black_24dp"
+                android:title="Open Chat Client"/>
+            <item
+                android:id="@+id/menuItemSettingsicon"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="Settings"/>
+            <item
+                android:id="@+id/menuItemHelp"
+                android:icon="@drawable/ic_help_outline_black_24dp"
+                android:title="Help"/>
+        </menu>
+    </item>
+</menu>
