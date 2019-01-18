@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Fahrradscout24</string>
-    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_registration">Registration</string>
+    <string name="title_activity_profile">Profile</string>
 </resources>

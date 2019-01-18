@@ -7,12 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 public class MainActivity extends AppCompatActivity {
 
     private DbHandler db;
+    private Benutzer user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +26,23 @@ public class MainActivity extends AppCompatActivity {
         //initialize fresco
         Fresco.initialize(this);
 
+
         Button buttonLogin= (Button) findViewById(R.id.btnLogin);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                // TODO Andi hier muss deine Activity anstatt ProfileActivity rein, AdvertisementActivity is iwie buggy
-                startActivity(new Intent(MainActivity.this,AdvertisementActivity.class));
+                EditText tvUsername = (EditText) findViewById(R.id.edit_text_login_username);
+                EditText tvPassword = (EditText) findViewById(R.id.edit_text_login_password);
+                String password = "";
+                user = db.getUserByBenutzername(tvUsername.getText().toString());
+                if(user != null){
+                    password = user.getPasswort();}
+                   String tvPasswordText = tvPassword.getText().toString();
+                if(user == null || !(password.equals(tvPasswordText)) ){
+                    Toast.makeText(MainActivity.this,"Login failed",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else{
+                startActivity(new Intent(MainActivity.this,AdvertisementActivity.class));}
             };
         });
 
@@ -55,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity(intent);
     }
     //TODO Ende ausschnitt
+
+
+
 
 
 }

@@ -244,7 +244,7 @@ public class DbHandler extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getReadableDatabase();
         String query = "SELECT * FROM " + "benutzer " + "Where benutzername = '" + benutzername+ "'";
         Cursor cursor = database.rawQuery(query,null);
-        if(cursor!=null) {
+        if(cursor!=null && cursor.getCount() != 0) {
             cursor.moveToFirst();
             //TODO getInt() verursacht out of bound exception bei der DB, warsch werden user nicht richtig hinzugefügt
             int id = cursor.getInt(cursor.getColumnIndex("benutzer_id"));

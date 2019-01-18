@@ -24,7 +24,7 @@ public class AdvertisementActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_advertisment);
         Log.d(msg, "The onCreate() event");
 
         gridView = (GridView) findViewById(R.id.gv_adv);

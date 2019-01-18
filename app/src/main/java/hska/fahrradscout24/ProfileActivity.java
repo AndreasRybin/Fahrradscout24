@@ -51,11 +51,21 @@ public class ProfileActivity extends AppCompatActivity {
         //init SQLlite DB
         db = new DbHandler(this);
         user = db.getUserByBenutzername("ahmed");
-        //get address
-        EditText etAddress = (EditText)findViewById(R.id.edit_text_adress);
+        //get Textviews
+        EditText tvAddress = (EditText)findViewById(R.id.edit_text_adress);
+        EditText tvBirthDate = (EditText)findViewById(R.id.tvSelectedDate);
+        EditText tvMail = (EditText)findViewById(R.id.edit_text_mail);
+        EditText tvPhone = (EditText)findViewById(R.id.edit_text_phone);
+        EditText tvPassword = (EditText)findViewById(R.id.edit_text_password);
+        Switch   swNotifications = (Switch) findViewById(R.id.switchNotification);
 
-        etAddress.setText(user.getAdresse());
-
+        if(user != null) {
+            //TODO geburtsdatum, Phone und Notifications einbinden
+            tvAddress.setText(user.getAdresse());
+            //etBirthDate.setText(user.getGeburtsdatum());
+            tvMail.setText(user.getEmail());
+            tvPassword.setText(user.getPasswort());
+        }
 
         //start calendar button
         ImageButton selectDate = findViewById(R.id.btnDate);
@@ -155,9 +165,9 @@ public class ProfileActivity extends AppCompatActivity {
     //}
     //end load picture
     //start switch listener
-        Switch notifiactions = (Switch) findViewById(R.id.switchNotification);
-        if(notifiactions != null){
-        notifiactions.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        Switch notifications = (Switch) findViewById(R.id.switchNotification);
+        if(notifications != null){
+        notifications.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 ImageView imageNotifications = (ImageView) findViewById(R.id.imgNotifications);
                 if(isChecked) {
@@ -182,9 +192,10 @@ public class ProfileActivity extends AppCompatActivity {
                 EditText tvAdress = (EditText) findViewById(R.id.edit_text_adress);
                 EditText tvMail = (EditText) findViewById(R.id.edit_text_mail);
                 EditText tvPhone = (EditText) findViewById(R.id.edit_text_phone);
+                EditText tvPassword = (EditText)findViewById(R.id.edit_text_password);
 
                 //tvPhone.getText();
-                //speichern, return code abwarten und toast ausgeben
+                //todo speichern, return code abwarten und toast ausgeben
                 Toast.makeText(ProfileActivity.this,"Saving sucessful",
                         Toast.LENGTH_SHORT).show();
             }
@@ -193,14 +204,22 @@ public class ProfileActivity extends AppCompatActivity {
         final Button btnProfileDiscard = (Button) findViewById(R.id.btn_profile_discard);
         btnProfileDiscard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //get Data from texts
-                EditText tvBirthdate = (EditText) findViewById(R.id.tvSelectedDate);
-                EditText tvAdress = (EditText) findViewById(R.id.edit_text_adress);
-                EditText tvMail = (EditText) findViewById(R.id.edit_text_mail);
-                EditText tvPhone = (EditText) findViewById(R.id.edit_text_phone);
+                //get Textviews
+                EditText tvAddress = (EditText)findViewById(R.id.edit_text_adress);
+                EditText tvBirthDate = (EditText)findViewById(R.id.tvSelectedDate);
+                EditText tvMail = (EditText)findViewById(R.id.edit_text_mail);
+                EditText tvPhone = (EditText)findViewById(R.id.edit_text_phone);
+                EditText tvPassword = (EditText)findViewById(R.id.edit_text_password);
+                Switch   swNotifications = (Switch) findViewById(R.id.switchNotification);
 
-                //tvPhone.setText();
-                //speichern, return code abwarten und toast ausgeben
+                if(user != null) {
+                    //TODO geburtsdatum, Phone und Notifications einbinden
+                    tvAddress.setText(user.getAdresse());
+                    //tvBirthDate.setText(user.getGeburtsdatum());
+                    tvMail.setText(user.getEmail());
+                    tvPassword.setText(user.getPasswort());
+                }
+
                 Toast.makeText(ProfileActivity.this,"Changes discarted",
                         Toast.LENGTH_SHORT).show();
             }
