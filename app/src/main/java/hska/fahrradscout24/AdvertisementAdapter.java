@@ -54,7 +54,7 @@ public class AdvertisementAdapter extends BaseAdapter {
         Advertisement e = new Advertisement();
         e = empList.get(position);
         anzeigeIdIdTextView.setText("AnzeigeId: " + String.valueOf(e.getId()));
-        fahrradIdTextView.setText("FahrradId: " + e.getFahrrad_id());
+        fahrradIdTextView.setText("preis: " + e.getPreis());
         erstelldatumTextView.setText("erstelldatum: " + e.getErstelldatum());
         ablaufdatumTextView.setText("ablaufdatum: " + e.getAblaufdatum());
         preisTextView.setText("preis" + e.getPreis());

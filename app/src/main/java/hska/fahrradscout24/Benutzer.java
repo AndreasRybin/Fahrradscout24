@@ -1,6 +1,6 @@
 package hska.fahrradscout24;
 
-import java.util.Date;
+import android.graphics.Bitmap;
 
 /**
  * Created by bakir on 10.01.2019.
@@ -12,15 +12,21 @@ public class Benutzer {
     private String passwort;
     private String email;
     private String adresse;
-    private Date geburtsdatum;
+    private String geburtsdatum;
+    private String telefon;
+    private Bitmap profileBild;
 
-    public Benutzer(int benutzer_id, String benutzername, String passwort, String email, String adresse, Date geburtsdatum) {
+    public Benutzer(int benutzer_id, String benutzername, String passwort, String email,
+                    String adresse, String geburtsdatum, String telefon, Bitmap profileBild) {
         this.benutzer_id = benutzer_id;
         this.benutzername = benutzername;
         this.passwort = passwort;
         this.email = email;
         this.adresse = adresse;
         this.geburtsdatum = geburtsdatum;
+        this.telefon = telefon;
+        this.profileBild = profileBild;
+
     }
 
     public int getBenutzer_id() {
@@ -63,11 +69,19 @@ public class Benutzer {
         this.adresse = adresse;
     }
 
-    public Date getGeburtsdatum() {
+    public String getGeburtsdatum() {
         return geburtsdatum;
     }
 
-    public void setGeburtsdatum(Date geburtsdatum) {
+    public void setGeburtsdatum(String geburtsdatum) {
         this.geburtsdatum = geburtsdatum;
     }
+
+    public Bitmap getProfileBild() { return profileBild; }
+
+    public void setProfileBild(Bitmap profileBild) { this.profileBild = profileBild; }
+
+    public String getTelefon() { return telefon;   }
+
+    public void setTelefon(String telefon) {  this.telefon = telefon; }
 }

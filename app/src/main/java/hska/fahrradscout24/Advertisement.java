@@ -1,28 +1,31 @@
 package hska.fahrradscout24;
 
+import android.graphics.Bitmap;
+
 public class Advertisement {
 
-    int id, fahrrad_id, preis;
-    String erstelldatum, ablaufdatum;
+    private int id, preis;
+    private String erstelldatum, ablaufdatum;
+    private Bitmap fahrradbild;
 
-    public Advertisement() {
+    public Advertisement(){
+
     }
 
-    public Advertisement(int id, int fahrrad_id, String erstelldatum, String ablaufdatum, int preis) {
+
+
+    public Advertisement(int id, int preis, String erstelldatum, String ablaufdatum, Bitmap fahrradbild) {
         this.id = id;
-        this.fahrrad_id = fahrrad_id;
         this.preis = preis;
         this.erstelldatum = erstelldatum;
         this.ablaufdatum = ablaufdatum;
+        this.fahrradbild = fahrradbild;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getFahrrad_id() {
-        return fahrrad_id;
-    }
 
     public int getPreis() {
         return preis;
@@ -40,10 +43,6 @@ public class Advertisement {
         this.id = id;
     }
 
-    public void setFahrrad_id(int fahrrad_id) {
-        this.fahrrad_id = fahrrad_id;
-    }
-
     public void setPreis(int preis) {
         this.preis = preis;
     }
@@ -54,5 +53,13 @@ public class Advertisement {
 
     public void setAblaufdatum(String ablaufdatum) {
         this.ablaufdatum = ablaufdatum;
+    }
+
+    public Bitmap getFahrradbild() {
+        return fahrradbild;
+    }
+
+    public void setFahrradbild(Bitmap fahrradbild) {
+        this.fahrradbild = fahrradbild;
     }
 }
