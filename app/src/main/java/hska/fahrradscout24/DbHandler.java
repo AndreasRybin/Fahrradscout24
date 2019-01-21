@@ -355,9 +355,8 @@ public class DbHandler extends SQLiteOpenHelper {
                     advertisement.add(emp);
 
                 }
-
-                c.close();
             }
+            c.close();
         }
         return advertisement;
     }
