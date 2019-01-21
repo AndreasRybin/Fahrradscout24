@@ -35,7 +35,6 @@
                         android:background="@drawable/roundcorner"
                         android:clickable="true"
                         android:src="@drawable/ic_account_box_white_24dp" />
-                    <!-- TODO Profile Picture DB -->
                     <ImageButton
                         android:id="@+id/btnProfilePic"
                         android:layout_width="30dp"
@@ -55,7 +54,6 @@
                     android:textColor="#fff"
                     android:textSize="21sp"
                     android:textStyle="bold" />
-                <!-- TODO User Name DB-->
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -93,6 +91,33 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="80dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/ic_lock_black_24dp" />
+
+                        <EditText
+                            android:id="@+id/edit_text_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="15dp"
+                            android:hint="Password"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPassword"
+                            android:text=""
+                            android:textColorLink="@color/colorPrimary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="13dp"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
@@ -120,7 +145,6 @@
                             android:text=""
                             android:textColorLink="@color/colorPrimary" />
 
-                        <!-- TODO DB-->
                     </LinearLayout>
 
                     <LinearLayout
@@ -148,7 +172,6 @@
                             android:inputType="textPostalAddress"
                             android:text=""
                             android:textColorLink="@color/colorPrimary" />
-                        <!-- TODO Mail DB-->
                     </LinearLayout>
 
                     <LinearLayout
@@ -176,8 +199,6 @@
                             android:inputType="textWebEmailAddress"
                             android:text=""
                             android:textColorLink="@color/colorPrimary" />
-                        <!-- TODO Mail DB-->
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -206,7 +227,6 @@
                             android:inputType="phone"
                             android:text=""
                             android:textColorLink="@color/colorPrimary" />
-                        <!--TODO Phone DB -->
                     </LinearLayout>
 
                     <LinearLayout
@@ -237,7 +257,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1" />
-                        <!--TODO an aus regler -->
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>
@@ -247,6 +266,14 @@
                 android:layout_height="60dp"
                 android:gravity="end"
                 android:minHeight="60dp">
+
+                <Button
+                    android:id="@+id/btn_profile_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="150dp"
+                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:text="DELETE" />
 
                 <Button
                     android:id="@+id/btn_profile_discard"
@@ -262,7 +289,6 @@
                     android:layout_height="50dp"
                     android:layout_marginRight="15dp"
                     android:text="Save" />
-                <!-- TODO link them to center the buttons -->
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -1,8 +1,10 @@
 package hska.fahrradscout24;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -43,6 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
     private DbHandler db;
     private Benutzer user;
     private String username;
+    private Bitmap profile_picture;
 
 
 
@@ -58,8 +61,8 @@ public class ProfileActivity extends AppCompatActivity {
         }
         //get Textviews
         TextView tvUsername = (TextView)findViewById(R.id.tv_username_profile);
-        EditText tvAddress = (EditText)findViewById(R.id.edit_text_adress);
-        EditText tvBirthDate = (EditText)findViewById(R.id.tvSelectedDate);
+        final EditText tvAddress = (EditText)findViewById(R.id.edit_text_adress);
+        final EditText tvBirthDate = (EditText)findViewById(R.id.tvSelectedDate);
         EditText tvMail = (EditText)findViewById(R.id.edit_text_mail);
         EditText tvPhone = (EditText)findViewById(R.id.edit_text_phone);
         EditText tvPassword = (EditText)findViewById(R.id.edit_text_password);
@@ -67,31 +70,18 @@ public class ProfileActivity extends AppCompatActivity {
         Switch   swNotifications = (Switch) findViewById(R.id.switchNotification);
 
         if(user != null) {
-            //TODO geburtsdatum, Phone und Notifications einbinden
-            // format blob into bitmap
-            //byte[] byteArray = DBcursor.getBlob(columnIndex);
-            // Bitmap picture = BitmapFactory.decodeByteArray(byteArray, 0 ,byteArray.length);
-            //resize bitmap
-            //final int maxSize = 120;
-            //int outWidth;
-            //int outHeight;
-            //int inWidth = picture.getWidth();
-            //int inHeight = picture.getHeight();
-            //if(inWidth > inHeight){
-            //    outWidth = maxSize;
-            //    outHeight = (inHeight * maxSize) / inWidth;
-            //} else {
-            //    outHeight = maxSize;
-            //    outWidth = (inWidth * maxSize) / inHeight;
-            //}
-            //Bitmap resizedBitmap = picture;
-            //Bitmap resizedBitmap = Bitmap.createScaledBitmap(picture, outWidth, outHeight, true);
-            //imageView.setImageBitmap(resizedBitmap);
+
             tvUsername.setText(user.getBenutzername());
             tvAddress.setText(user.getAdresse());
-            //etBirthDate.setText(user.getGeburtsdatum());
+            tvBirthDate.setText(user.getGeburtsdatum());
             tvMail.setText(user.getEmail());
             tvPassword.setText(user.getPasswort());
+            tvPhone.setText(user.getTelefon());
+
+            //get image
+            Bitmap picture = user.getProfileBild();
+            if(picture != null){
+            imageView.setImageBitmap(picture);}
         }
 
         //start calendar button
@@ -215,16 +205,25 @@ public class ProfileActivity extends AppCompatActivity {
         btnProfileSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //get Data from texts
+
                 EditText tvBirthdate = (EditText) findViewById(R.id.tvSelectedDate);
                 EditText tvAdress = (EditText) findViewById(R.id.edit_text_adress);
                 EditText tvMail = (EditText) findViewById(R.id.edit_text_mail);
                 EditText tvPhone = (EditText) findViewById(R.id.edit_text_phone);
                 EditText tvPassword = (EditText)findViewById(R.id.edit_text_password);
 
-                //tvPhone.getText();
-                //todo speichern, return code abwarten und toast ausgeben
+
+                db.updateBenutzer(user.getBenutzer_id(),
+                                  user.getBenutzername(),
+                                  tvAdress.getText().toString(),
+                                  tvMail.getText().toString(),
+                                  tvPhone.getText().toString(),
+                                  tvPassword.getText().toString(),
+                                  tvBirthdate.getText().toString(),
+                                  profile_picture);
                 Toast.makeText(ProfileActivity.this,"Saving sucessful",
                         Toast.LENGTH_SHORT).show();
+                user = db.getUserByBenutzername(user.getBenutzername());
             }
         });
         //discard changes
@@ -237,14 +236,17 @@ public class ProfileActivity extends AppCompatActivity {
                 EditText tvMail = (EditText)findViewById(R.id.edit_text_mail);
                 EditText tvPhone = (EditText)findViewById(R.id.edit_text_phone);
                 EditText tvPassword = (EditText)findViewById(R.id.edit_text_password);
+                ImageView imgProfile = (ImageView)findViewById(R.id.imgProfilePic);
                 Switch   swNotifications = (Switch) findViewById(R.id.switchNotification);
 
                 if(user != null) {
-                    //TODO geburtsdatum, Phone und Notifications einbinden
                     tvAddress.setText(user.getAdresse());
-                    //tvBirthDate.setText(user.getGeburtsdatum());
+                    tvBirthDate.setText(user.getGeburtsdatum());
                     tvMail.setText(user.getEmail());
                     tvPassword.setText(user.getPasswort());
+                    tvPhone.setText(user.getTelefon());
+                    if(user.getProfileBild()!= null){
+                    imgProfile.setImageBitmap(user.getProfileBild());}
                 }
 
                 Toast.makeText(ProfileActivity.this,"Changes discarted",
@@ -252,6 +254,26 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        //delete Profile
+        //btn_profile_delete
+        final Button btnProfileDelete = (Button) findViewById(R.id.btn_profile_delete);
+        btnProfileDelete.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                new AlertDialog.Builder(ProfileActivity.this)
+                        .setTitle("Deleting Profile")
+                        .setMessage("Do you really want to delete your Profile?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                db.deleteBenutzer(user.getBenutzer_id());
+                                Toast.makeText(ProfileActivity.this, "Profile deleted!", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(ProfileActivity.this,MainActivity.class);
+                                startActivity(i);
+
+                            }})
+                        .setNegativeButton(android.R.string.no, null).show();
+            }});
 
     }
 
@@ -329,7 +351,7 @@ public class ProfileActivity extends AppCompatActivity {
             //Bitmap resizedBitmap = picture;
             Bitmap resizedBitmap = Bitmap.createScaledBitmap(picture, outWidth, outHeight, true);
             imageView.setImageBitmap(resizedBitmap);
-            //TODO save picture in orientation change
+            profile_picture = resizedBitmap;
         }
 
         }

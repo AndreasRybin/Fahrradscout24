@@ -33,7 +33,7 @@ public class DbHandler extends SQLiteOpenHelper {
     private static final String CREATE_BENUTZER_TABLE = "create table if not exists Benutzer" +
             "(benutzer_id integer primary key AUTOINCREMENT," +
             "benutzername text not null UNIQUE," +
-            "adresse text not null UNIQUE," +
+            "adresse text not null," +
             "email text not null," +
             "telefon text not null," +
             "geburtsdatum text not null," +
@@ -121,6 +121,20 @@ public class DbHandler extends SQLiteOpenHelper {
         values.put("passwort",passwort);
         values.put("geburtsdatum",geburtsdatum);
         values.put("profilebild",profileBild_byte);
+
+        database.insert("benutzer",null,values);
+
+    }
+
+    public void createBenutzer (String benutzerName, String adresse, String email, String telefon, String passwort, String geburtsdatum) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("benutzername",benutzerName);
+        values.put("adresse",adresse);
+        values.put("email",email);
+        values.put("telefon",telefon);
+        values.put("passwort",passwort);
+        values.put("geburtsdatum",geburtsdatum);
 
         database.insert("benutzer",null,values);
 
@@ -274,16 +288,18 @@ public class DbHandler extends SQLiteOpenHelper {
             String passwort = cursor.getString(cursor.getColumnIndex("passwort"));
             String geburtsdatum = cursor.getString(cursor.getColumnIndex("geburtsdatum"));
             byte[] profileBild = cursor.getBlob(cursor.getColumnIndex("profilebild"));
+
+            Benutzer benutzer = null;
             if(profileBild != null) {
                 Bitmap profileBild_bitmap = BitmapFactory.decodeByteArray(profileBild, 0, profileBild.length);
-                Benutzer benutzer = new Benutzer(id,benutzername,passwort,email,adresse, geburtsdatum, telefon, profileBild_bitmap );
-
+                benutzer = new Benutzer(id,benutzername,passwort,email,adresse, geburtsdatum, telefon, profileBild_bitmap );
+                cursor.close();
+                return benutzer;
             }
-            Benutzer benutzer = new Benutzer(id,benutzername,passwort,email,adresse, geburtsdatum, telefon );
+            else{
+                benutzer = new Benutzer(id,benutzername,passwort,email,adresse, geburtsdatum, telefon );}
             cursor.close();
             return benutzer;
-
-
 
         }
 
@@ -355,8 +371,11 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
-        return outputStream.toByteArray();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            if(bitmap != null){
+            bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+            return outputStream.toByteArray();}
+            else {return null;}
+
     }
 }

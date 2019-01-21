@@ -3,6 +3,7 @@ package hska.fahrradscout24;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -48,16 +49,21 @@ public class RegistrationActivity extends AppCompatActivity {
                     }
                     else{
                     String username = tvUsername.getText().toString();
-                    user = db.getUserByBenutzername(username.toString());
+                    user = db.getUserByBenutzername(username);
                     if(user != null){
                         Toast.makeText(RegistrationActivity.this,"Username already exists",
                                 Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        //TODO user abspeichern in DB
-                        Intent intentRegistration = new Intent(RegistrationActivity.this,AdvertisementActivity.class);
+                        Intent intentRegistration = new Intent(RegistrationActivity.this, AdvertisementActivity.class);
                         intentRegistration.putExtra("username", tvUsername.getText().toString());
-                        //myIntent.putExtra("key", value); //Optional parameters
+                       db.createBenutzer (tvUsername.getText().toString(),
+                                          tvAdress.getText().toString(),
+                                          tvMail.getText().toString(),
+                                          tvPhone.getText().toString(),
+                                          tvPassword.getText().toString(),
+                                          tvBirthdate.getText().toString());
+                        intentRegistration.putExtra("username", tvUsername.getText().toString());
                         //String value = intent.getStringExtra("key"); //if it's a string you stored.
                         startActivity(intentRegistration);
 
@@ -66,7 +72,7 @@ public class RegistrationActivity extends AppCompatActivity {
         });
 
         ImageButton selectDate = findViewById(R.id.btnDate);
-        final TextView date = findViewById(R.id.tvSelectedDate);
+        final TextView date = findViewById(R.id.tvSelectedDate_reg);
         selectDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,13 +86,14 @@ public class RegistrationActivity extends AppCompatActivity {
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                                 String strday = Integer.toString(day);
                                 String strmonth = Integer.toString(month+1);
+                                String stryear = Integer.toString(year);
                                 if(day<10){
                                     strday = "0"+strday;
                                 }
                                 if(month+1 <10){
                                     strmonth = "0"+strmonth;
                                 }
-                                date.setText(strday + "." + strmonth + "." + year);
+                                date.setText(strday + "." + strmonth + "." + stryear);
                             }
                         }, year, month, dayOfMonth);
                 datePickerDialog.show();
