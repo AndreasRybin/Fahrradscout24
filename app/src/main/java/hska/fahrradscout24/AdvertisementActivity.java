@@ -1,6 +1,7 @@
 package hska.fahrradscout24;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -35,6 +36,15 @@ public class AdvertisementActivity extends Activity {
         advertisementList = databaseHelper.getAllAdvertisement();
         adapter = new AdvertisementAdapter(AdvertisementActivity.this, advertisementList);
         gridView.setAdapter(adapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(),FullAdvertisementActivity.class);
+                i.putExtra("id", position);
+                startActivity(i);
+            }
+        });
 
 
     }
@@ -88,6 +98,7 @@ public class AdvertisementActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.tv_adv_id) {
+            //TODO Start Activity für eine Anzeige
             return true;
         }
         return super.onOptionsItemSelected(item);

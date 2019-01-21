@@ -80,6 +80,34 @@ public class DbHandler extends SQLiteOpenHelper {
             "values('andy','789456','andy@gmail.com','085523529','musterStrasse 2 92981 Mannheim','29.06.1994')";
     private static final String ADD_ANZEIGE_1= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
             "values(1,'18.01.2019','29.01.2019',200)";
+    private static final String ADD_ANZEIGE_2= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(2,'18.01.2019','29.01.2019',500)";
+    private static final String ADD_ANZEIGE_3= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(3,'18.01.2019','29.01.2019',400)";
+    private static final String ADD_ANZEIGE_4= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(4,'12.01.2019','29.01.2019',300)";
+    private static final String ADD_ANZEIGE_5= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(5,'15.01.2019','29.01.2019',800)";
+    private static final String ADD_ANZEIGE_6= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(6,'18.01.2019','29.01.2019',70)";
+    private static final String ADD_ANZEIGE_7= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(7,'22.01.2019','29.01.2019',90)";
+    private static final String ADD_ANZEIGE_8= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(8,'10.01.2019','29.01.2019',560)";
+    private static final String ADD_ANZEIGE_9= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(9,'11.01.2019','29.01.2019',330)";
+    private static final String ADD_ANZEIGE_10= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(10,'12.01.2019','29.01.2019',990)";
+    private static final String ADD_ANZEIGE_11= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(11,'16.01.2019','29.01.2019',2200)";
+    private static final String ADD_ANZEIGE_12= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(12,'18.01.2019','29.01.2019',30)";
+    private static final String ADD_ANZEIGE_13= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(13,'30.01.2019','20.02.2019',55)";
+    private static final String ADD_ANZEIGE_14= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(14,'18.01.2019','29.01.2019',220)";
+    private static final String ADD_ANZEIGE_15= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+            "values(15,'19.01.2019','30.01.2019',300)";
 
 
     public DbHandler(Context context) {
@@ -98,8 +126,20 @@ public class DbHandler extends SQLiteOpenHelper {
         database.execSQL(ADD_USER_1);
         database.execSQL(ADD_USER_2);
         database.execSQL(ADD_ANZEIGE_1);
-
-
+        database.execSQL(ADD_ANZEIGE_2);
+        database.execSQL(ADD_ANZEIGE_3);
+        database.execSQL(ADD_ANZEIGE_4);
+        database.execSQL(ADD_ANZEIGE_5);
+        database.execSQL(ADD_ANZEIGE_6);
+        database.execSQL(ADD_ANZEIGE_7);
+        database.execSQL(ADD_ANZEIGE_8);
+        database.execSQL(ADD_ANZEIGE_9);
+        database.execSQL(ADD_ANZEIGE_10);
+        database.execSQL(ADD_ANZEIGE_11);
+        database.execSQL(ADD_ANZEIGE_12);
+        database.execSQL(ADD_ANZEIGE_13);
+        database.execSQL(ADD_ANZEIGE_14);
+        database.execSQL(ADD_ANZEIGE_15);
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class AdvertisementAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.advertisment_item, null);
 
+        //ImageView anzeigeImage = convertView.findViewById(R.id.adv_image);
         TextView anzeigeIdIdTextView = convertView.findViewById(R.id.tv_adv_id);
         TextView fahrradIdTextView = convertView.findViewById(R.id.tv_adv_fahrrad_id);
         TextView erstelldatumTextView = convertView.findViewById(R.id.tv_adv_erstelldatum);

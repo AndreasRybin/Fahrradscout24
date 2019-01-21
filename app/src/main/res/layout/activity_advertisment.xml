@@ -4,17 +4,10 @@
     android:layout_height="match_parent"
     tools:context="hska.fahrradscout24.MainActivity">
 
-    <EditText
-        android:id="@+id/et_empcode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="hello_world" />
-
     <GridView
         android:id="@+id/gv_adv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_empcode"
         android:horizontalSpacing="4dp"
         android:numColumns="2"
         android:verticalSpacing="4dp"></GridView>
