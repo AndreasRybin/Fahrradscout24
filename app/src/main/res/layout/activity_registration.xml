@@ -39,7 +39,6 @@
                 android:inputType="textPersonName"
                 android:text=""
                 android:textColorLink="@color/colorPrimary" />
-            <!-- TODO Mail DB-->
 
         </LinearLayout>
 
@@ -68,8 +67,6 @@
                 android:inputType="textPassword"
                 android:text=""
                 android:textColorLink="@color/colorPrimary" />
-            <!-- TODO Mail DB-->
-
         </LinearLayout>
 
         <LinearLayout
@@ -101,8 +98,6 @@
                 android:inputType="date"
                 android:text=""
                 android:textColorLink="@color/colorPrimary" />
-
-            <!-- TODO DB-->
         </LinearLayout>
 
         <LinearLayout
@@ -130,7 +125,6 @@
                 android:inputType="textPostalAddress"
                 android:text=""
                 android:textColorLink="@color/colorPrimary" />
-            <!-- TODO Mail DB-->
         </LinearLayout>
 
         <LinearLayout
@@ -158,8 +152,6 @@
                 android:inputType="textWebEmailAddress"
                 android:text=""
                 android:textColorLink="@color/colorPrimary" />
-            <!-- TODO Mail DB-->
-
         </LinearLayout>
 
         <LinearLayout
@@ -188,7 +180,6 @@
                 android:inputType="phone"
                 android:text=""
                 android:textColorLink="@color/colorPrimary" />
-            <!--TODO Phone DB -->
         </LinearLayout>
 
         <Button

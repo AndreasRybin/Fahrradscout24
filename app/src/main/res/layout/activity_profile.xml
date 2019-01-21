@@ -105,7 +105,6 @@
                     android:text=""
                     android:textColorLink="@color/colorPrimary" />
 
-                <!-- TODO DB-->
             </LinearLayout>
 
             <LinearLayout
@@ -137,8 +136,6 @@
                     android:inputType="date"
                     android:text=""
                     android:textColorLink="@color/colorPrimary" />
-
-                <!-- TODO DB-->
             </LinearLayout>
 
             <LinearLayout
@@ -166,7 +163,6 @@
                     android:inputType="textPostalAddress"
                     android:text=""
                     android:textColorLink="@color/colorPrimary" />
-                <!-- TODO Mail DB-->
             </LinearLayout>
 
             <LinearLayout
@@ -194,8 +190,6 @@
                     android:inputType="textWebEmailAddress"
                     android:text=""
                     android:textColorLink="@color/colorPrimary" />
-                <!-- TODO Mail DB-->
-
             </LinearLayout>
 
             <LinearLayout
@@ -224,7 +218,6 @@
                     android:inputType="phone"
                     android:text=""
                     android:textColorLink="@color/colorPrimary" />
-                <!--TODO Phone DB -->
             </LinearLayout>
 
             <LinearLayout
@@ -256,7 +249,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1" />
-                <!--TODO an aus regler -->
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -267,6 +259,14 @@
         android:backgroundTint="@color/colorPrimary"
         android:gravity="end"
         android:minHeight="60dp">
+
+        <Button
+            android:id="@+id/btn_profile_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginRight="50dp"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:text="DELETE" />
 
         <Button
             android:id="@+id/btn_profile_discard"
@@ -282,7 +282,6 @@
             android:layout_height="50dp"
             android:layout_marginRight="15dp"
             android:text="Save" />
-        <!-- TODO link them to center the buttons -->
     </LinearLayout>
 
 </LinearLayout>
