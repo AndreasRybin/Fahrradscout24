@@ -21,12 +21,6 @@ public class Advertisement {
         this.ablaufdatum = ablaufdatum;
         this.fahrradbild = fahrradbild;
     }
-    public Advertisement(int id, int preis, String erstelldatum, String ablaufdatum) {
-        this.id = id;
-        this.preis = preis;
-        this.erstelldatum = erstelldatum;
-        this.ablaufdatum = ablaufdatum;
-    }
 
     public int getId() {
         return id;

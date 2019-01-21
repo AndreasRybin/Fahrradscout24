@@ -28,17 +28,6 @@ public class Benutzer {
         this.profileBild = profileBild;
 
     }
-    public Benutzer(int benutzer_id, String benutzername, String passwort, String email,
-                    String adresse, String geburtsdatum, String telefon) {
-        this.benutzer_id = benutzer_id;
-        this.benutzername = benutzername;
-        this.passwort = passwort;
-        this.email = email;
-        this.adresse = adresse;
-        this.geburtsdatum = geburtsdatum;
-        this.telefon = telefon;
-
-    }
 
     public int getBenutzer_id() {
         return benutzer_id;
