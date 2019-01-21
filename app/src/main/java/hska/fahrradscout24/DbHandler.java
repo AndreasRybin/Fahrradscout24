@@ -45,7 +45,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "(fahrrad_id integer primary key AUTOINCREMENT," +
             "eigentuermer integer not null," +
             "hersteller text not null," +
-            "preis real not null," +
+            "preis integer not null," +
             "groesse integer not null," +
             "farbe text not null," +
             "art_gangschaltung integer not null," +
@@ -56,7 +56,7 @@ public class DbHandler extends SQLiteOpenHelper {
            // "fahrrad_id integer not null," +
             "erstelldatum text not null," +
             "ablaufdatum text not null," +
-            "fahrradbild blob not null" +
+            "fahrradbild blob," +
            // "beschreibung text not null," +
             "preis integer not null);";
     private static final String CREATE_AUKTION_TABLE = "create table if not exists Auktion" +
@@ -78,7 +78,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "values('ahmed','123456','ahmed@gmail.com','017632322529','musterStrasse 1 76313 Karlsruhe', '02.01.1993')";
     private static final String ADD_USER_2= "insert into benutzer(benutzername,passwort,email,telefon,adresse,geburtsdatum)"+
             "values('andy','789456','andy@gmail.com','085523529','musterStrasse 2 92981 Mannheim','29.06.1994')";
-    private static final String ADD_ANZEIGE_1= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,beschreibung) " +
+    private static final String ADD_ANZEIGE_1= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
             "values(1,'18.01.2019','29.01.2019',200)";
 
 
@@ -274,8 +274,12 @@ public class DbHandler extends SQLiteOpenHelper {
             String passwort = cursor.getString(cursor.getColumnIndex("passwort"));
             String geburtsdatum = cursor.getString(cursor.getColumnIndex("geburtsdatum"));
             byte[] profileBild = cursor.getBlob(cursor.getColumnIndex("profilebild"));
-            Bitmap profileBild_bitmap = BitmapFactory.decodeByteArray(profileBild, 0, profileBild.length);
-                Benutzer benutzer = new Benutzer(id,benutzername,passwort,email,adresse, geburtsdatum, telefon, profileBild_bitmap );
+           if(profileBild != null) {
+               Bitmap profileBild_bitmap = BitmapFactory.decodeByteArray(profileBild, 0, profileBild.length);
+               Benutzer benutzer = new Benutzer(id,benutzername,passwort,email,adresse, geburtsdatum, telefon, profileBild_bitmap );
+
+           }
+                Benutzer benutzer = new Benutzer(id,benutzername,passwort,email,adresse, geburtsdatum, telefon );
                 cursor.close();
                 return benutzer;
 
@@ -295,16 +299,23 @@ public class DbHandler extends SQLiteOpenHelper {
         if (c != null) {
             while (c.moveToNext()) {
                 int anzeigeId = c.getInt(c.getColumnIndex("anzeige_id"));
-                int fahrradId = c.getInt(c.getColumnIndex("fahrrad_id"));
                 String erstelldatum = c.getString(c.getColumnIndex("erstelldatum"));
                 String ablaufdatum = c.getString(c.getColumnIndex("ablaufdatum"));
                 int preis = c.getInt(c.getColumnIndex("preis"));
                 byte[] fahrradbild = c.getBlob(c.getColumnIndex("fahrradbild"));
-                Bitmap fahrradbild_bitmap = BitmapFactory.decodeByteArray(fahrradbild, 0, fahrradbild.length);
+                if (fahrradbild != null) {
+                    Bitmap fahrradbild_bitmap = BitmapFactory.decodeByteArray(fahrradbild, 0, fahrradbild.length);
 
-                Advertisement emp = new Advertisement(anzeigeId,preis, erstelldatum, ablaufdatum, fahrradbild_bitmap);
+                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum, fahrradbild_bitmap);
+                    advertisement.add(emp);
 
-                advertisement.add(emp);
+                }
+                else {
+                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum);
+                    advertisement.add(emp);
+
+                }
+
                 c.close();
             }
         }
