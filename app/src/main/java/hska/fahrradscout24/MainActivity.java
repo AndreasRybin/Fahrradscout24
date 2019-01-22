@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                 Intent i = new Intent(MainActivity.this,AdvertisementActivity.class);
+                i.putExtra("username", user.getBenutzername()); //Optional parameters}
                 startActivity(i);}
             };
         });

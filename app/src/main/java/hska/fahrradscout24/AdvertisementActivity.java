@@ -20,6 +20,8 @@ public class AdvertisementActivity extends Activity {
     GridView gridView;
     ArrayList<Advertisement> advertisementList;
     AdvertisementAdapter adapter;
+    String username;
+    private DbHandler db;
 
     /** Called when the activity is first created. */
     @Override
@@ -27,13 +29,14 @@ public class AdvertisementActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advertisment);
         Log.d(msg, "The onCreate() event");
+        username = getIntent().getStringExtra("username");
 
         gridView = (GridView) findViewById(R.id.gv_adv);
 
-        DbHandler databaseHelper = new DbHandler(AdvertisementActivity.this);
+        db = new DbHandler(AdvertisementActivity.this);
         advertisementList = new ArrayList<Advertisement>();
 
-        advertisementList = databaseHelper.getAllAdvertisement();
+        advertisementList = db.getAllAdvertisement();
         adapter = new AdvertisementAdapter(AdvertisementActivity.this, advertisementList);
         gridView.setAdapter(adapter);
 

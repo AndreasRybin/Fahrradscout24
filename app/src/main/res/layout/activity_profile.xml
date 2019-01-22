@@ -11,8 +11,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="170dp">
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gradientbackground"
@@ -31,6 +31,7 @@
                     android:background="@drawable/roundcorner"
                     android:clickable="true"
                     android:src="@drawable/ic_account_box_white_24dp" />
+
                 <ImageButton
                     android:id="@+id/btnProfilePic"
                     android:layout_width="30dp"
@@ -50,6 +51,7 @@
                 android:textColor="#fff"
                 android:textSize="21sp"
                 android:textStyle="bold" />
+
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -79,7 +79,7 @@ public class DbHandler extends SQLiteOpenHelper {
     private static final String ADD_USER_2= "insert into benutzer(benutzername,passwort,email,telefon,adresse,geburtsdatum)"+
             "values('andy','789456','andy@gmail.com','085523529','musterStrasse 2 92981 Mannheim','29.06.1994')";
     private static final String ADD_ANZEIGE_1= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(1,'18.01.2019','29.01.2019',200)";
+            "values(1,'17.01.2019','29.01.2019',200)";
     private static final String ADD_ANZEIGE_2= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
             "values(2,'18.01.2019','29.01.2019',500)";
     private static final String ADD_ANZEIGE_3= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
@@ -112,6 +112,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     public DbHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
     @Override
@@ -353,26 +354,29 @@ public class DbHandler extends SQLiteOpenHelper {
         ArrayList<Advertisement> advertisement = new ArrayList<>();
         Cursor c = database.rawQuery(query, null);
         if (c != null) {
-            while (c.moveToNext()) {
-                int anzeigeId = c.getInt(c.getColumnIndex("anzeige_id"));
-                String erstelldatum = c.getString(c.getColumnIndex("erstelldatum"));
-                String ablaufdatum = c.getString(c.getColumnIndex("ablaufdatum"));
-                int preis = c.getInt(c.getColumnIndex("preis"));
-                byte[] fahrradbild = c.getBlob(c.getColumnIndex("fahrradbild"));
-                if (fahrradbild != null) {
-                    Bitmap fahrradbild_bitmap = BitmapFactory.decodeByteArray(fahrradbild, 0, fahrradbild.length);
+            if (c.moveToFirst()) {
+                while (!c.isAfterLast()) {
+                    int anzeigeId = c.getInt(c.getColumnIndex("anzeige_id"));
+                    String erstelldatum = c.getString(c.getColumnIndex("erstelldatum"));
+                    String ablaufdatum = c.getString(c.getColumnIndex("ablaufdatum"));
+                    int preis = c.getInt(c.getColumnIndex("preis"));
+                    byte[] fahrradbild = c.getBlob(c.getColumnIndex("fahrradbild"));
+                    if (fahrradbild != null) {
+                        Bitmap fahrradbild_bitmap = BitmapFactory.decodeByteArray(fahrradbild, 0, fahrradbild.length);
 
-                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum, fahrradbild_bitmap);
-                    advertisement.add(emp);
+                        Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum, fahrradbild_bitmap);
+                        advertisement.add(emp);
 
-                }
-                else {
-                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum);
-                    advertisement.add(emp);
+                    } else {
+                        Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum);
+                        advertisement.add(emp);
 
+                    }
+                    c.moveToNext();
                 }
             }
             c.close();
+            c.getCount();
         }
         return advertisement;
     }
