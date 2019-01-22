@@ -123,39 +123,36 @@ public class ProfileActivity extends AppCompatActivity {
         ImageButton btnClickLoadImage = (ImageButton) findViewById(R.id.btnProfilePic);
             btnClickLoadImage.setOnClickListener(new View.OnClickListener() {
 
-                                                  @Override
-                                                  public void onClick(View arg0) {
-                                                      if (ContextCompat.checkSelfPermission(ProfileActivity.this,
-                                                              Manifest.permission.READ_EXTERNAL_STORAGE)
-                                                              != PackageManager.PERMISSION_GRANTED) {
-
-                                                          // Permission is not granted
-                                                          // Should we show an explanation?
-                                                          if (ActivityCompat.shouldShowRequestPermissionRationale(ProfileActivity.this,
-                                                                  Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                                                              // Show an explanation to the user *asynchronously* -- don't block
-                                                              // this thread waiting for the user's response! After the user
-                                                              // sees the explanation, try again to request the permission.
-                                                          } else {
-                                                              // No explanation needed; request the permission
-                                                              ActivityCompat.requestPermissions(ProfileActivity.this,
-                                                                      new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                                                                      MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-
-                                                              // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                                                              // app-defined int constant. The callback method gets the
-                                                              // result of the request.
-                                                          }
-                                                      } else {
-                                                          // Permission has already been granted
-                                                          Intent i = new Intent(
-                                                                  Intent.ACTION_PICK,
-                                                                  android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                                          startActivityForResult(i, RESULT_LOAD_IMAGE);
-                                                      }
-
-                                                  }
-                                              });
+                @Override
+                public void onClick(View arg0) {
+                    if (ContextCompat.checkSelfPermission(ProfileActivity.this,
+                            Manifest.permission.READ_EXTERNAL_STORAGE)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        // Permission is not granted
+                        // Should we show an explanation?
+                        if (ActivityCompat.shouldShowRequestPermissionRationale(ProfileActivity.this,
+                                Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                            // Show an explanation to the user *asynchronously* -- don't block
+                            // this thread waiting for the user's response! After the user
+                            // sees the explanation, try again to request the permission.
+                        } else {
+                            // No explanation needed; request the permission
+                            ActivityCompat.requestPermissions(ProfileActivity.this,
+                                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                             // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                            // app-defined int constant. The callback method gets the
+                            // result of the request.
+                        }
+                    } else {
+                        // Permission has already been granted
+                        Intent i = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(i, RESULT_LOAD_IMAGE);
+                    }
+                }
+            });
         ImageView clickLoadImage = (ImageView) findViewById(R.id.imgProfilePic);
         clickLoadImage.setOnClickListener(new View.OnClickListener() {
 

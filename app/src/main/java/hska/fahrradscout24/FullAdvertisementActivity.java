@@ -52,8 +52,13 @@ public class FullAdvertisementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.full_advertisement);
 
+        final Button deleteBtn = (Button) findViewById(R.id.btn_fulladv_delete);
+        final Button saveBtn = (Button) findViewById(R.id.btn_fulladv_save);
+
+
+
         username = getIntent().getStringExtra("username");
-        //usernameId = getIntent().getStringExtra("position");
+        usernameId = getIntent().getStringExtra("position");
 
         String stringId = getIntent().getStringExtra("id");
 
@@ -71,6 +76,7 @@ public class FullAdvertisementActivity extends AppCompatActivity {
         TextView ablaufdatumFulladv = findViewById(R.id.tv_fulladv_show_ablaufdatum);
         EditText preisFulladv = findViewById(R.id.edit_fulladv_preis);
 
+        Benutzer user = db.getUserByBenutzername(username);
         Benutzer verkäufer = db.getUserById(advertisement.getBenutzer_id());
 
         if (verkäufer != null)
@@ -79,6 +85,20 @@ public class FullAdvertisementActivity extends AppCompatActivity {
         erstelldatumFulladv.setText(advertisement.getErstelldatum());
         ablaufdatumFulladv.setText(advertisement.getAblaufdatum());
         preisFulladv.setText(Integer.toString(advertisement.getPreis()));
+
+        //SHOW OR HIDE BUTTON IF YOU ARE OWNER OF ADVERTISEMENT
+        if (verkäufer.getBenutzer_id() != user.getBenutzer_id())
+        {
+            //HIDE Buttons
+            deleteBtn.setVisibility(View.INVISIBLE);
+            saveBtn.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            //SHOW Buttons
+            deleteBtn.setVisibility(View.VISIBLE);
+            saveBtn.setVisibility(View.VISIBLE);
+        }
 
         //START OD ON CLICK FUNKTION
         ImageView btnClickLoadImage = (ImageView) findViewById(R.id.iv_fulladv_image);
@@ -118,7 +138,6 @@ public class FullAdvertisementActivity extends AppCompatActivity {
             }
         });
 
-        final Button deleteBtn = (Button) findViewById(R.id.btn_fulladv_delete);
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 new AlertDialog.Builder(FullAdvertisementActivity.this)
@@ -137,7 +156,6 @@ public class FullAdvertisementActivity extends AppCompatActivity {
                         .setNegativeButton(android.R.string.no, null).show();
             }});
 
-        final Button saveBtn = (Button) findViewById(R.id.btn_fulladv_save);
         final Advertisement finalAdvertisement = advertisement;
         saveBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
