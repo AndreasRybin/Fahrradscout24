@@ -4,9 +4,12 @@ import android.graphics.Bitmap;
 
 public class Advertisement {
 
-    private int id, preis;
+    private int id;
+    private int preis;
+    private int benutzer_id;
     private String erstelldatum, ablaufdatum;
     private Bitmap fahrradbild;
+
 
     public Advertisement(){
 
@@ -14,18 +17,20 @@ public class Advertisement {
 
 
 
-    public Advertisement(int id, int preis, String erstelldatum, String ablaufdatum, Bitmap fahrradbild) {
+    public Advertisement(int id, int preis, String erstelldatum, String ablaufdatum, Bitmap fahrradbild, int benutzer_id) {
         this.id = id;
         this.preis = preis;
         this.erstelldatum = erstelldatum;
         this.ablaufdatum = ablaufdatum;
         this.fahrradbild = fahrradbild;
+        this.benutzer_id = benutzer_id;
     }
-    public Advertisement(int id, int preis, String erstelldatum, String ablaufdatum) {
+    public Advertisement(int id, int preis, String erstelldatum, String ablaufdatum, int benutzer_id) {
         this.id = id;
         this.preis = preis;
         this.erstelldatum = erstelldatum;
         this.ablaufdatum = ablaufdatum;
+        this.benutzer_id = benutzer_id;
     }
 
     public int getId() {
@@ -67,5 +72,13 @@ public class Advertisement {
 
     public void setFahrradbild(Bitmap fahrradbild) {
         this.fahrradbild = fahrradbild;
+    }
+
+    public int getBenutzer_id() {
+        return benutzer_id;
+    }
+
+    public void setBenutzer_id(int benutzer_id) {
+        this.benutzer_id = benutzer_id;
     }
 }
