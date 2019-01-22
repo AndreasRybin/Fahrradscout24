@@ -1,5 +1,6 @@
 package hska.fahrradscout24;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,10 +46,12 @@ public class AdvertisementActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
                 Intent i = new Intent(getApplicationContext(),FullAdvertisementActivity.class);
                 i.putExtra("position", Integer.toString(position));
                 advertisementId = advertisementList.get(position);
                 i.putExtra("id", Integer.toString(advertisementId.getId()));
+                i.putExtra("username", username); //Optional parameters}
                 startActivity(i);
             }
         });
@@ -107,6 +110,12 @@ public class AdvertisementActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(false); // disable the button
+            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
+            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
+        }
         return true;
     }
     public void profileClick(MenuItem menuItem) {
