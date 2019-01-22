@@ -25,7 +25,7 @@ import java.util.Date;
 
 public class DbHandler extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "Fahrradscout2";
+    private static final String DATABASE_NAME = "Fahrradscout3";
 
     private static final int DATABASE_VERSION = 1;
 
