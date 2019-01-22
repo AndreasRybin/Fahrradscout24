@@ -45,7 +45,7 @@ public class AdvertisementAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.advertisment_item, null);
 
-        //ImageView anzeigeImage = convertView.findViewById(R.id.adv_image);
+        //ImageView anzeigeImage = convertView.findViewById(R.id.);
         TextView anzeigeIdIdTextView = convertView.findViewById(R.id.tv_adv_id);
         TextView fahrradIdTextView = convertView.findViewById(R.id.tv_adv_fahrrad_id);
         TextView erstelldatumTextView = convertView.findViewById(R.id.tv_adv_erstelldatum);
@@ -59,7 +59,7 @@ public class AdvertisementAdapter extends BaseAdapter {
         fahrradIdTextView.setText("FahrradId: " + e.getId());
         erstelldatumTextView.setText("erstelldatum: " + e.getErstelldatum());
         ablaufdatumTextView.setText("ablaufdatum: " + e.getAblaufdatum());
-        preisTextView.setText("preis" + e.getPreis());
+        preisTextView.setText("preis: " + e.getPreis());
 
         return convertView;
     }
