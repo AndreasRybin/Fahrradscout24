@@ -47,6 +47,7 @@ public class FullAdvertisementActivity extends AppCompatActivity {
     private DbHandler db;
     String username;
     private Bitmap advertisement_picture;
+    Advertisement advertisement = new Advertisement();
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,13 +69,16 @@ public class FullAdvertisementActivity extends AppCompatActivity {
 
         db = new DbHandler(FullAdvertisementActivity.this);
 
-        Advertisement advertisement = new Advertisement();
+
         advertisement = db.getAnzeige(advertisementId);
 
         TextView verkäuferFulladv = findViewById(R.id.tv_fulladv_show_verkäufer);
         TextView erstelldatumFulladv = findViewById(R.id.tv_fulladv_show_erstelldatum);
         TextView ablaufdatumFulladv = findViewById(R.id.tv_fulladv_show_ablaufdatum);
+        TextView farbeFulladv = findViewById(R.id.tv_fulladv_farbe);
+        TextView groesseFulladv = findViewById(R.id.tv_fulladv_groesse);
         EditText preisFulladv = findViewById(R.id.edit_fulladv_preis);
+        ImageView imageFulladv = (ImageView) findViewById(R.id.iv_fulladv_image);
 
         Benutzer user = db.getUserByBenutzername(username);
         Benutzer verkäufer = db.getUserById(advertisement.getBenutzer_id());
@@ -82,8 +86,14 @@ public class FullAdvertisementActivity extends AppCompatActivity {
         if (verkäufer != null)
         verkäuferFulladv.setText(verkäufer.getBenutzername());
 
+        Bitmap picture = advertisement.getFahrradbild();
+        if(picture != null){
+            imageFulladv.setImageBitmap(picture);}
+
         erstelldatumFulladv.setText(advertisement.getErstelldatum());
         ablaufdatumFulladv.setText(advertisement.getAblaufdatum());
+        farbeFulladv.setText(advertisement.getFarbe());
+        groesseFulladv.setText(Integer.toString(advertisement.getGroesse()));
         preisFulladv.setText(Integer.toString(advertisement.getPreis()));
 
         //SHOW OR HIDE BUTTON IF YOU ARE OWNER OF ADVERTISEMENT
@@ -103,7 +113,6 @@ public class FullAdvertisementActivity extends AppCompatActivity {
         //START OD ON CLICK FUNKTION
         ImageView btnClickLoadImage = (ImageView) findViewById(R.id.iv_fulladv_image);
         btnClickLoadImage.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
                 if (ContextCompat.checkSelfPermission(FullAdvertisementActivity.this,
@@ -163,11 +172,13 @@ public class FullAdvertisementActivity extends AppCompatActivity {
 
                 EditText tvPreis = (EditText)findViewById(R.id.edit_fulladv_preis);
 
-                db.updateAnzeige(finalAdvertisement.getId(),
-                        finalAdvertisement.getErstelldatum(),
-                        finalAdvertisement.getAblaufdatum(),
+                db.updateAnzeige(advertisement.getId(),
+                        advertisement.getErstelldatum(),
+                        advertisement.getAblaufdatum(),
                         Integer.parseInt(tvPreis.getText().toString()),
-                        advertisement_picture);
+                        advertisement_picture,
+                        advertisement.getFarbe(),
+                        advertisement.getGroesse());
                 Toast.makeText(FullAdvertisementActivity.this,"Saving sucessful",
                         Toast.LENGTH_SHORT).show();
             }
