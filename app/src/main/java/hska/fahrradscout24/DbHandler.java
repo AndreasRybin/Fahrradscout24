@@ -25,7 +25,7 @@ import java.util.Date;
 
 public class DbHandler extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "Fahrradscout2";
+    private static final String DATABASE_NAME = "Fahrradscout3";
 
     private static final int DATABASE_VERSION = 1;
 
@@ -57,6 +57,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "erstelldatum text not null," +
             "ablaufdatum text not null," +
             "fahrradbild blob," +
+            "benutzer_id id not null," +
             // "beschreibung text not null," +
             "preis integer not null);";
     private static final String CREATE_AUKTION_TABLE = "create table if not exists Auktion" +
@@ -78,36 +79,36 @@ public class DbHandler extends SQLiteOpenHelper {
             "values('ahmed','123457','ahmed@gmail.com','017632322529','musterStrasse 1 76313 Karlsruhe', '19.21.1993')";
     private static final String ADD_USER_2= "insert into benutzer(benutzername,passwort,email,telefon,adresse,geburtsdatum)"+
             "values('andy','789456','andy@gmail.com','085523529','musterStrasse 2 92981 Mannheim','29.06.1994')";
-    private static final String ADD_ANZEIGE_1= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(1,'26.01.2019','29.01.2019',200)";
-    private static final String ADD_ANZEIGE_2= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(2,'18.01.2019','29.01.2019',500)";
-    private static final String ADD_ANZEIGE_3= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(3,'18.01.2019','29.01.2019',400)";
-    private static final String ADD_ANZEIGE_4= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(4,'12.01.2019','29.01.2019',300)";
-    private static final String ADD_ANZEIGE_5= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(5,'15.01.2019','29.01.2019',800)";
-    private static final String ADD_ANZEIGE_6= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(6,'18.01.2019','29.01.2019',70)";
-    private static final String ADD_ANZEIGE_7= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(7,'22.01.2019','29.01.2019',90)";
-    private static final String ADD_ANZEIGE_8= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(8,'10.01.2019','29.01.2019',560)";
-    private static final String ADD_ANZEIGE_9= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(9,'11.01.2019','29.01.2019',330)";
-    private static final String ADD_ANZEIGE_10= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(10,'12.01.2019','29.01.2019',990)";
-    private static final String ADD_ANZEIGE_11= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(11,'16.01.2019','29.01.2019',2200)";
-    private static final String ADD_ANZEIGE_12= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(12,'18.01.2019','29.01.2019',30)";
-    private static final String ADD_ANZEIGE_13= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(13,'30.01.2019','20.02.2019',55)";
-    private static final String ADD_ANZEIGE_14= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(14,'18.01.2019','29.01.2019',220)";
-    private static final String ADD_ANZEIGE_15= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(15,'19.01.2019','30.01.2019',300)";
+    private static final String ADD_ANZEIGE_1= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(1,'26.01.2019','29.01.2019',200,1)";
+    private static final String ADD_ANZEIGE_2= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(2,'18.01.2019','29.01.2019',500,2)";
+    private static final String ADD_ANZEIGE_3= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(3,'18.01.2019','29.01.2019',400,2)";
+    private static final String ADD_ANZEIGE_4= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(4,'12.01.2019','29.01.2019',300,1)";
+    private static final String ADD_ANZEIGE_5= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(5,'15.01.2019','29.01.2019',800,1)";
+    private static final String ADD_ANZEIGE_6= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(6,'18.01.2019','29.01.2019',70,1)";
+    private static final String ADD_ANZEIGE_7= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(7,'22.01.2019','29.01.2019',90,2)";
+    private static final String ADD_ANZEIGE_8= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(8,'10.01.2019','29.01.2019',560,1)";
+    private static final String ADD_ANZEIGE_9= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(9,'11.01.2019','29.01.2019',330,1)";
+    private static final String ADD_ANZEIGE_10= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(10,'12.01.2019','29.01.2019',990,2)";
+    private static final String ADD_ANZEIGE_11= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(11,'16.01.2019','29.01.2019',2200,2)";
+    private static final String ADD_ANZEIGE_12= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(12,'18.01.2019','29.01.2019',30,2)";
+    private static final String ADD_ANZEIGE_13= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(13,'30.01.2019','20.02.2019',55,2)";
+    private static final String ADD_ANZEIGE_14= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(14,'18.01.2019','29.01.2019',220,1)";
+    private static final String ADD_ANZEIGE_15= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
+            "values(15,'19.01.2019','30.01.2019',300,1)";
 
 
     public DbHandler(Context context) {
@@ -359,15 +360,16 @@ public class DbHandler extends SQLiteOpenHelper {
                 String ablaufdatum = c.getString(c.getColumnIndex("ablaufdatum"));
                 int preis = c.getInt(c.getColumnIndex("preis"));
                 byte[] fahrradbild = c.getBlob(c.getColumnIndex("fahrradbild"));
+                int benutzer_id = c.getInt(c.getColumnIndex("benutzer_id"));
                 if (fahrradbild != null) {
                     Bitmap fahrradbild_bitmap = BitmapFactory.decodeByteArray(fahrradbild, 0, fahrradbild.length);
 
-                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum, fahrradbild_bitmap);
+                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum, fahrradbild_bitmap, benutzer_id);
                     advertisement.add(emp);
 
                 }
                 else {
-                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum);
+                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum, benutzer_id);
                     advertisement.add(emp);
 
                 }
@@ -397,6 +399,22 @@ public class DbHandler extends SQLiteOpenHelper {
         cursor.close();
         return profileBild_bitmap;
 
+    }
+    public Advertisement getAnzeige(int id)
+    {
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT profilebild FROM " + "anzeige " + "Where anzeige_id = " + id ;
+        Cursor cursor = database.rawQuery(query,null);
+        if(cursor!=null && cursor.getCount() != 0) {
+            String erstelldatum = cursor.getString(cursor.getColumnIndex("erstelldatum"));
+            String ablaufdatum = cursor.getString(cursor.getColumnIndex("ablaufdatum"));
+            int preis = cursor.getInt(cursor.getColumnIndex("preis"));
+            int benutzer_id = cursor.getInt(cursor.getColumnIndex("benutzer_id"));
+            cursor.close();
+            Advertisement ad = new Advertisement(id,preis,erstelldatum,ablaufdatum,benutzer_id);
+            return ad;
+        }
+        return null;
     }
 
     public boolean deleteBenutzer(int id){
