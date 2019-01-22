@@ -246,7 +246,11 @@ public class ProfileActivity extends AppCompatActivity {
                     tvPassword.setText(user.getPasswort());
                     tvPhone.setText(user.getTelefon());
                     if(user.getProfileBild()!= null){
-                    imgProfile.setImageBitmap(user.getProfileBild());}
+                    imgProfile.setImageBitmap(user.getProfileBild());
+                    profile_picture = user.getProfileBild();}
+                    else{
+                        imgProfile.setImageResource(R.drawable.ic_account_box_white_24dp);
+                    }
                 }
 
                 Toast.makeText(ProfileActivity.this,"Changes discarted",
