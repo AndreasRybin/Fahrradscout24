@@ -57,6 +57,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "erstelldatum text not null," +
             "ablaufdatum text not null," +
             "fahrradbild blob," +
+            "benutzer_id id not null," +
             // "beschreibung text not null," +
             "preis integer not null);";
     private static final String CREATE_AUKTION_TABLE = "create table if not exists Auktion" +
@@ -78,8 +79,8 @@ public class DbHandler extends SQLiteOpenHelper {
             "values('ahmed','123457','ahmed@gmail.com','017632322529','musterStrasse 1 76313 Karlsruhe', '19.21.1993')";
     private static final String ADD_USER_2= "insert into benutzer(benutzername,passwort,email,telefon,adresse,geburtsdatum)"+
             "values('andy','789456','andy@gmail.com','085523529','musterStrasse 2 92981 Mannheim','29.06.1994')";
-    private static final String ADD_ANZEIGE_1= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(1,'26.01.2019','29.01.2019',200)";
+    private static final String ADD_ANZEIGE_1= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,fahrradbild) " +
+            "values(1,'26.01.2019','29.01.2019',app/images/1-format43.jpg)";
     private static final String ADD_ANZEIGE_2= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
             "values(2,'18.01.2019','29.01.2019',500)";
     private static final String ADD_ANZEIGE_3= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
