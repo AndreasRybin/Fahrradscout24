@@ -58,6 +58,8 @@ public class DbHandler extends SQLiteOpenHelper {
             "ablaufdatum text not null," +
             "fahrradbild blob," +
             "benutzer_id id not null," +
+            "farbe text not null," +
+            "groesse integer not null," +
             // "beschreibung text not null," +
             "preis integer not null);";
     private static final String CREATE_AUKTION_TABLE = "create table if not exists Auktion" +
@@ -79,36 +81,36 @@ public class DbHandler extends SQLiteOpenHelper {
             "values('ahmed','123457','ahmed@gmail.com','017632322529','musterStrasse 1 76313 Karlsruhe', '19.21.1993')";
     private static final String ADD_USER_2= "insert into benutzer(benutzername,passwort,email,telefon,adresse,geburtsdatum)"+
             "values('andy','789456','andy@gmail.com','085523529','musterStrasse 2 92981 Mannheim','29.06.1994')";
-    private static final String ADD_ANZEIGE_1= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(1,'26.01.2019','29.01.2019',200,1)";
-    private static final String ADD_ANZEIGE_2= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(2,'18.01.2019','29.01.2019',500,2)";
-    private static final String ADD_ANZEIGE_3= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(3,'18.01.2019','29.01.2019',400,2)";
-    private static final String ADD_ANZEIGE_4= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(4,'12.01.2019','29.01.2019',300,1)";
-    private static final String ADD_ANZEIGE_5= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(5,'15.01.2019','29.01.2019',800,1)";
-    private static final String ADD_ANZEIGE_6= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(6,'18.01.2019','29.01.2019',70,1)";
-    private static final String ADD_ANZEIGE_7= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(7,'22.01.2019','29.01.2019',90,2)";
-    private static final String ADD_ANZEIGE_8= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(8,'10.01.2019','29.01.2019',560,1)";
-    private static final String ADD_ANZEIGE_9= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(9,'11.01.2019','29.01.2019',330,1)";
-    private static final String ADD_ANZEIGE_10= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(10,'12.01.2019','29.01.2019',990,2)";
-    private static final String ADD_ANZEIGE_11= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(11,'16.01.2019','29.01.2019',2200,2)";
-    private static final String ADD_ANZEIGE_12= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(12,'18.01.2019','29.01.2019',30,2)";
-    private static final String ADD_ANZEIGE_13= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(13,'30.01.2019','20.02.2019',55,2)";
-    private static final String ADD_ANZEIGE_14= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(14,'18.01.2019','29.01.2019',220,1)";
-    private static final String ADD_ANZEIGE_15= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
-            "values(15,'19.01.2019','30.01.2019',300,1)";
+    private static final String ADD_ANZEIGE_1= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(1,'26.01.2019','29.01.2019',200,1,'rot',26)";
+    private static final String ADD_ANZEIGE_2= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(2,'18.01.2019','29.01.2019',500,2,'blau',24)";
+    private static final String ADD_ANZEIGE_3= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(3,'18.01.2019','29.01.2019',400,2,'weiss',26)";
+    private static final String ADD_ANZEIGE_4= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(4,'12.01.2019','29.01.2019',300,1,'schwarz',28)";
+    private static final String ADD_ANZEIGE_5= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(5,'15.01.2019','29.01.2019',800,1,'rot',29)";
+    private static final String ADD_ANZEIGE_6= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(6,'18.01.2019','29.01.2019',70,1,'weiss',24)";
+    private static final String ADD_ANZEIGE_7= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(7,'22.01.2019','29.01.2019',90,2,'blau',28)";
+    private static final String ADD_ANZEIGE_8= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(8,'10.01.2019','29.01.2019',560,1,'braun',26)";
+    private static final String ADD_ANZEIGE_9= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(9,'11.01.2019','29.01.2019',330,1,'gold',28)";
+    private static final String ADD_ANZEIGE_10= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(10,'12.01.2019','29.01.2019',990,2,'blau',24)";
+    private static final String ADD_ANZEIGE_11= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(11,'16.01.2019','29.01.2019',2200,2,'grau',28)";
+    private static final String ADD_ANZEIGE_12= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(12,'18.01.2019','29.01.2019',30,2,'rot',24)";
+    private static final String ADD_ANZEIGE_13= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(13,'30.01.2019','20.02.2019',55,2,'blau',26)";
+    private static final String ADD_ANZEIGE_14= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(14,'18.01.2019','29.01.2019',220,1,'weiss',29)";
+    private static final String ADD_ANZEIGE_15= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id,farbe,groesse) " +
+            "values(15,'19.01.2019','30.01.2019',300,1,'schwarz',24)";
 
 
     public DbHandler(Context context) {
@@ -195,14 +197,16 @@ public class DbHandler extends SQLiteOpenHelper {
         database.insert("benutzer",null,values);
 
     }
-    public void createAnzeige (Bitmap fahrradbild, String erstelldatum, String ablaufdatum, int preis) {
+    public void createAnzeige (Bitmap fahrradbild, String erstelldatum, String ablaufdatum, int preis,int benutzer_id, String farbe, int groesse) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         byte[] fahrradbild_byte = getBitmapAsByteArray(fahrradbild);
         values.put("fahrradbild", fahrradbild_byte);
         values.put("erstelldatum", erstelldatum);
         values.put("ablaufdatum", ablaufdatum);
-        values.put("preis", preis);
+        values.put("benutzer_id", benutzer_id);
+        values.put("farbe", farbe);
+        values.put("groesse", groesse);
         database.insert("anzeige",null,values);
 
     }
@@ -261,7 +265,7 @@ public class DbHandler extends SQLiteOpenHelper {
         values.put("art_fahrrad",art_fahrrad);
         database.update("Fahrrad",values,"fahrrad_id="+id,null);
     }
-    public int updateAnzeige (int id, String erstelldatum, String ablaufdatum, int preis, Bitmap fahrradbild) {
+    public int updateAnzeige (int id, String erstelldatum, String ablaufdatum, int preis, Bitmap fahrradbild, String farbe, int groesse) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         byte[] fahrradbild_byte = getBitmapAsByteArray(fahrradbild);
@@ -269,6 +273,8 @@ public class DbHandler extends SQLiteOpenHelper {
         values.put("erstelldatum", erstelldatum);
         values.put("ablaufdatum", ablaufdatum);
         values.put("preis", preis);
+        values.put("farbe", farbe);
+        values.put("groesse", groesse);
         return database.update("Anzeige",values,"anzeige_id="+id,null);
     }
     public int updateAuktion (int id, int fahrrad, String erstelldatum, String ablaufdatum, int hoechstbieter) {
@@ -361,15 +367,17 @@ public class DbHandler extends SQLiteOpenHelper {
                 int preis = c.getInt(c.getColumnIndex("preis"));
                 byte[] fahrradbild = c.getBlob(c.getColumnIndex("fahrradbild"));
                 int benutzer_id = c.getInt(c.getColumnIndex("benutzer_id"));
+                int groesse = c.getInt(c.getColumnIndex("groesse"));
+                String farbe = c.getString(c.getColumnIndex("farbe"));
                 if (fahrradbild != null) {
                     Bitmap fahrradbild_bitmap = BitmapFactory.decodeByteArray(fahrradbild, 0, fahrradbild.length);
 
-                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum, fahrradbild_bitmap, benutzer_id);
+                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum, fahrradbild_bitmap, benutzer_id,farbe,groesse);
                     advertisement.add(emp);
 
                 }
                 else {
-                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum, benutzer_id);
+                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum, benutzer_id, farbe, groesse);
                     advertisement.add(emp);
 
                 }
@@ -411,8 +419,10 @@ public class DbHandler extends SQLiteOpenHelper {
             String ablaufdatum = cursor.getString(cursor.getColumnIndex("ablaufdatum"));
             int preis = cursor.getInt(cursor.getColumnIndex("preis"));
             int benutzer_id = cursor.getInt(cursor.getColumnIndex("benutzer_id"));
+            int groesse = cursor.getInt(cursor.getColumnIndex("groesse"));
+            String farbe = cursor.getString(cursor.getColumnIndex("farbe"));
             cursor.close();
-            Advertisement ad = new Advertisement(id,preis,erstelldatum,ablaufdatum,benutzer_id);
+            Advertisement ad = new Advertisement(id,preis,erstelldatum,ablaufdatum,benutzer_id,farbe,groesse);
             return ad;
         }
         return null;
