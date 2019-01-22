@@ -406,6 +406,7 @@ public class DbHandler extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + "anzeige " + "Where anzeige_id = " + id ;
         Cursor cursor = database.rawQuery(query,null);
         if(cursor!=null && cursor.getCount() != 0) {
+            cursor.moveToFirst();
             String erstelldatum = cursor.getString(cursor.getColumnIndex("erstelldatum"));
             String ablaufdatum = cursor.getString(cursor.getColumnIndex("ablaufdatum"));
             int preis = cursor.getInt(cursor.getColumnIndex("preis"));
