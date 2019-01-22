@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hska.fahrradscout24.MainActivity">
+    tools:context="hska.fahrradscout24.MainActivity"
+    android:background="@drawable/gradientbackground"
+    android:id="@+id/drawer_layout">
 
     <GridView
         android:id="@+id/gv_adv"

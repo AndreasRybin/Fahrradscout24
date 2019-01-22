@@ -56,7 +56,8 @@
             android:name=".AdvertisementActivity"
             android:label="Advertisment"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan"
+            ></activity>
         <activity
             android:name=".FullAdvertisementActivity"
             android:label="Advertisement"

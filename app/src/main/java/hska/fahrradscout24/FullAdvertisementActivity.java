@@ -17,12 +17,23 @@ import java.util.ArrayList;
 public class FullAdvertisementActivity extends Activity {
 
     String usernameId;
+    Integer advertisementId;
+    ArrayList<Advertisement> listOfAd = new ArrayList<Advertisement>();
     private DbHandler db;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.full_advertisement);
-        usernameId = getIntent().getStringExtra("username");
+        //TODO ID FEHLT MIR
+        //usernameId = getIntent().getStringExtra("position");
+
+        String stringId = getIntent().getStringExtra("id");
+
+        if (stringId != null){
+            advertisementId = Integer.parseInt(stringId);
+        }
+
+
 
         db = new DbHandler(FullAdvertisementActivity.this);
 
@@ -32,7 +43,7 @@ public class FullAdvertisementActivity extends Activity {
         Button saveButton = (Button) findViewById(R.id.btn_fulladv_save);
 
         Advertisement e = new Advertisement();
-        //e = db.getAnzeigebyId();
+        e = db.getAnzeige(advertisementId);
 
         TextView verkäuferFulladv = findViewById(R.id.tv_fulladv_show_verkäufer);
         TextView erstelldatumFulladv = findViewById(R.id.tv_fulladv_show_erstelldatum);

@@ -3,6 +3,7 @@ package hska.fahrradscout24;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class AdvertisementActivity extends Activity {
+public class AdvertisementActivity extends AppCompatActivity {
 
     String msg = "Android : AdvertisementActivity : ";
     GridView gridView;
@@ -22,6 +23,7 @@ public class AdvertisementActivity extends Activity {
     AdvertisementAdapter adapter;
     String username;
     private DbHandler db;
+    Advertisement advertisementId;
 
     /** Called when the activity is first created. */
     @Override
@@ -44,7 +46,9 @@ public class AdvertisementActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(),FullAdvertisementActivity.class);
-                i.putExtra("id", position);
+                i.putExtra("position", Integer.toString(position));
+                advertisementId = advertisementList.get(position);
+                i.putExtra("id", Integer.toString(advertisementId.getId()));
                 startActivity(i);
             }
         });
@@ -88,13 +92,6 @@ public class AdvertisementActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -105,5 +102,20 @@ public class AdvertisementActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    public void profileClick(MenuItem menuItem) {
+        Intent intentProfile = new Intent(this, ProfileActivity.class);
+
+
+            intentProfile.putExtra("username", username); //Optional parameters}
+            //myIntent.putExtra("key", value); //Optional parameters
+            //String value = intent.getStringExtra("key"); //if it's a string you stored.
+            this.startActivity(intentProfile);
     }
 }

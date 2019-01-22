@@ -403,7 +403,7 @@ public class DbHandler extends SQLiteOpenHelper {
     public Advertisement getAnzeige(int id)
     {
         SQLiteDatabase database = this.getReadableDatabase();
-        String query = "SELECT profilebild FROM " + "anzeige " + "Where anzeige_id = " + id ;
+        String query = "SELECT * FROM " + "anzeige " + "Where anzeige_id = " + id ;
         Cursor cursor = database.rawQuery(query,null);
         if(cursor!=null && cursor.getCount() != 0) {
             String erstelldatum = cursor.getString(cursor.getColumnIndex("erstelldatum"));
