@@ -315,6 +315,7 @@ public class DbHandler extends SQLiteOpenHelper {
         return passwort;
 
     }
+
     public Benutzer getUserByBenutzername(String benutzername){
         SQLiteDatabase database = this.getReadableDatabase();
         String query = "SELECT * FROM " + "benutzer " + "Where benutzername = '" + benutzername+ "'";
@@ -339,6 +340,39 @@ public class DbHandler extends SQLiteOpenHelper {
             }
             else{
                 benutzer = new Benutzer(id,benutzername,passwort,email,adresse, geburtsdatum, telefon );}
+            cursor.close();
+            return benutzer;
+
+        }
+
+        return null;
+    }
+
+    public Benutzer getUserById(int id){
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT * FROM " + "benutzer " + "Where benutzer_id = '" + id+ "'";
+        Cursor cursor = database.rawQuery(query,null);
+        if(cursor!=null && cursor.getCount() != 0) {
+            cursor.moveToFirst();
+            //TODO getInt() verursacht out of bound exception bei der DB, warsch werden user nicht richtig hinzugefügt
+            int benutzer_id = cursor.getInt(cursor.getColumnIndex("benutzer_id"));
+            String benutzername = cursor.getString(cursor.getColumnIndex("benutzername"));
+            String adresse = cursor.getString(cursor.getColumnIndex("adresse"));
+            String email = cursor.getString(cursor.getColumnIndex("email"));
+            String telefon = cursor.getString(cursor.getColumnIndex("telefon"));
+            String passwort = cursor.getString(cursor.getColumnIndex("passwort"));
+            String geburtsdatum = cursor.getString(cursor.getColumnIndex("geburtsdatum"));
+            byte[] profileBild = cursor.getBlob(cursor.getColumnIndex("profilebild"));
+
+            Benutzer benutzer = null;
+            if(profileBild != null) {
+                Bitmap profileBild_bitmap = BitmapFactory.decodeByteArray(profileBild, 0, profileBild.length);
+                benutzer = new Benutzer(benutzer_id,benutzername,passwort,email,adresse, geburtsdatum, telefon, profileBild_bitmap );
+                cursor.close();
+                return benutzer;
+            }
+            else{
+                benutzer = new Benutzer(benutzer_id,benutzername,passwort,email,adresse, geburtsdatum, telefon );}
             cursor.close();
             return benutzer;
 
