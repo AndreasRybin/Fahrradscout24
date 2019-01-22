@@ -25,7 +25,7 @@ import java.util.Date;
 
 public class DbHandler extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "Fahrradscout";
+    private static final String DATABASE_NAME = "Fahrradscout2";
 
     private static final int DATABASE_VERSION = 1;
 
@@ -75,11 +75,11 @@ public class DbHandler extends SQLiteOpenHelper {
             "(art_gangschaltung_id integer primary key AUTOINCREMENT," +
             "art text not null);";
     private static final String ADD_USER_1= "insert into benutzer(benutzername,passwort,email,telefon,adresse,geburtsdatum)"+
-            "values('ahmed','123456','ahmed@gmail.com','017632322529','musterStrasse 1 76313 Karlsruhe', '02.01.1993')";
+            "values('ahmed','123457','ahmed@gmail.com','017632322529','musterStrasse 1 76313 Karlsruhe', '19.21.1993')";
     private static final String ADD_USER_2= "insert into benutzer(benutzername,passwort,email,telefon,adresse,geburtsdatum)"+
             "values('andy','789456','andy@gmail.com','085523529','musterStrasse 2 92981 Mannheim','29.06.1994')";
     private static final String ADD_ANZEIGE_1= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
-            "values(1,'18.01.2019','29.01.2019',200)";
+            "values(1,'26.01.2019','29.01.2019',200)";
     private static final String ADD_ANZEIGE_2= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
             "values(2,'18.01.2019','29.01.2019',500)";
     private static final String ADD_ANZEIGE_3= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
@@ -180,7 +180,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     }
 
-    public long createFahrrad (int eigentuermer, String hersteller, double preis, int groesse, String farbe, int art_gangschaltung, int art_bremsen, int art_fahrrad) {
+    public void createFahrrad (int eigentuermer, String hersteller, double preis, int groesse, String farbe, int art_gangschaltung, int art_bremsen, int art_fahrrad) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("eigentuermer",eigentuermer);
@@ -191,10 +191,10 @@ public class DbHandler extends SQLiteOpenHelper {
         values.put("art_gangschaltung",art_gangschaltung);
         values.put("art_bremsen",art_bremsen);
         values.put("art_fahrrad",art_fahrrad);
-        return database.insert("benutzer",null,values);
+        database.insert("benutzer",null,values);
 
     }
-    public long createAnzeige (Bitmap fahrradbild, String erstelldatum, String ablaufdatum, int preis) {
+    public void createAnzeige (Bitmap fahrradbild, String erstelldatum, String ablaufdatum, int preis) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         byte[] fahrradbild_byte = getBitmapAsByteArray(fahrradbild);
@@ -202,7 +202,7 @@ public class DbHandler extends SQLiteOpenHelper {
         values.put("erstelldatum", erstelldatum);
         values.put("ablaufdatum", ablaufdatum);
         values.put("preis", preis);
-        return database.insert("anzeige",null,values);
+        database.insert("anzeige",null,values);
 
     }
     public long createAuktion (int fahrrad, String erstelldatum, String ablaufdatum, int hoechstbieter) {
@@ -214,26 +214,26 @@ public class DbHandler extends SQLiteOpenHelper {
         values.put("hoechstbieter",hoechstbieter);
         return database.insert("auktion",null,values);
     }
-    public long createArtFahrrad (String art) {
+    public void createArtFahrrad (String art) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("art",art);
-        return database.insert("art_fahrrad",null,values);
+        database.insert("art_fahrrad",null,values);
     }
 
-    public long createArtBremsen (String art) {
+    public void createArtBremsen (String art) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("art",art);
-        return database.insert("art_bremsen",null,values);
+        database.insert("art_bremsen",null,values);
     }
-    public long createArtGangschaltung (String art) {
+    public void createArtGangschaltung (String art) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("art",art);
-        return database.insert("art_gangschaltung",null,values);
+        database.insert("art_gangschaltung",null,values);
     }
-    public int updateBenutzer (int id, String benutzerName, String adresse, String email, String telefon, String passwort, String geburtsdatum, Bitmap profileBild) {
+    public void updateBenutzer (int id, String benutzerName, String adresse, String email, String telefon, String passwort, String geburtsdatum, Bitmap profileBild) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         byte[] profileBild_byte = getBitmapAsByteArray(profileBild);
@@ -244,10 +244,10 @@ public class DbHandler extends SQLiteOpenHelper {
         values.put("passwort",passwort);
         values.put("geburtsdatum",geburtsdatum);
         values.put("profilebild",profileBild_byte);
-        return database.update("Benutzer",values,"benutzer_id="+id,null);
+        database.update("Benutzer",values,"benutzer_id="+id,null);
     }
 
-    public int createFahrrad (int id, int eigentuermer, String hersteller, double preis, int groesse, String farbe, int art_gangschaltung, int art_bremsen, int art_fahrrad) {
+    public void createFahrrad (int id, int eigentuermer, String hersteller, double preis, int groesse, String farbe, int art_gangschaltung, int art_bremsen, int art_fahrrad) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("eigentuermer",eigentuermer);
@@ -258,7 +258,7 @@ public class DbHandler extends SQLiteOpenHelper {
         values.put("art_gangschaltung",art_gangschaltung);
         values.put("art_bremsen",art_bremsen);
         values.put("art_fahrrad",art_fahrrad);
-        return database.update("Fahrrad",values,"fahrrad_id="+id,null);
+        database.update("Fahrrad",values,"fahrrad_id="+id,null);
     }
     public int updateAnzeige (int id, String erstelldatum, String ablaufdatum, int preis, Bitmap fahrradbild) {
         SQLiteDatabase database = this.getWritableDatabase();
