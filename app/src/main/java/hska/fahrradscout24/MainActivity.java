@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO Andi die 2 Methoden bitte ausschneiden und in die Activity nach Login stecken
     //TODO Anfang ausschnitt
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             //String value = intent.getStringExtra("key"); //if it's a string you stored.
             this.startActivity(intentProfile);
         }
-    }
+    }*/
     //TODO Ende ausschnitt
 
 
