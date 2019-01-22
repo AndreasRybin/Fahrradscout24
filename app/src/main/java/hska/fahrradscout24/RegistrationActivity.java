@@ -56,7 +56,6 @@ public class RegistrationActivity extends AppCompatActivity {
                     }
                     else{
                         Intent intentRegistration = new Intent(RegistrationActivity.this, AdvertisementActivity.class);
-                        intentRegistration.putExtra("username", tvUsername.getText().toString());
                        db.createBenutzer (tvUsername.getText().toString(),
                                           tvAdress.getText().toString(),
                                           tvMail.getText().toString(),
