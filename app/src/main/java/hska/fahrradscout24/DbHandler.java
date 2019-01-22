@@ -107,7 +107,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "values(13,'30.01.2019','20.02.2019',55,2)";
     private static final String ADD_ANZEIGE_14= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
             "values(14,'18.01.2019','29.01.2019',220,1)";
-    private static final String ADD_ANZEIGE_15= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis) " +
+    private static final String ADD_ANZEIGE_15= "insert into anzeige(anzeige_id,erstelldatum,ablaufdatum,preis,benutzer_id) " +
             "values(15,'19.01.2019','30.01.2019',300,1)";
 
 
