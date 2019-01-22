@@ -90,31 +90,25 @@
         android:id="@+id/btn_fulladv_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="132dp"
         android:elevation="0dp"
         android:text="Delete"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_fulladv_preis"
-        tools:layout_editor_absoluteX="16dp"
         tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_fulladv_discard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="68dp"
-        android:text="Discard"
-        app:layout_constraintStart_toEndOf="@+id/btn_fulladv_delete"
-        app:layout_constraintTop_toBottomOf="@+id/tv_fulladv_preis" />
 
     <Button
         android:id="@+id/btn_fulladv_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="8dp"
         android:text="Save"
-        app:layout_constraintStart_toEndOf="@+id/btn_fulladv_discard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.302"
+        app:layout_constraintStart_toEndOf="@+id/btn_fulladv_delete"
         app:layout_constraintTop_toBottomOf="@+id/tv_fulladv_preis" />
 
     <TextView

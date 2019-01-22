@@ -2,7 +2,9 @@ package hska.fahrradscout24;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.AppComponentFactory;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -28,6 +30,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -48,7 +51,6 @@ public class FullAdvertisementActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.full_advertisement);
-        //TODO ID FEHLT MIR
 
         username = getIntent().getStringExtra("username");
         //usernameId = getIntent().getStringExtra("position");
@@ -60,10 +62,6 @@ public class FullAdvertisementActivity extends AppCompatActivity {
         }
 
         db = new DbHandler(FullAdvertisementActivity.this);
-
-        Button deleteButton = (Button) findViewById(R.id.btn_fulladv_delete);
-        Button discardButton = (Button) findViewById(R.id.btn_fulladv_discard);
-        Button saveButton = (Button) findViewById(R.id.btn_fulladv_save);
 
         Advertisement advertisement = new Advertisement();
         advertisement = db.getAnzeige(advertisementId);
@@ -120,7 +118,42 @@ public class FullAdvertisementActivity extends AppCompatActivity {
             }
         });
 
+        final Button deleteBtn = (Button) findViewById(R.id.btn_fulladv_delete);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                new AlertDialog.Builder(FullAdvertisementActivity.this)
+                        .setTitle("Deleting Advertisement")
+                        .setMessage("Do you really want to delete your advertisement?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                db.deleteAnzeige(advertisementId);
+                                Toast.makeText(FullAdvertisementActivity.this, "Advertisement deleted!", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(FullAdvertisementActivity.this,AdvertisementActivity.class);
+                                startActivity(i);
+
+                            }})
+                        .setNegativeButton(android.R.string.no, null).show();
+            }});
+
+        final Button saveBtn = (Button) findViewById(R.id.btn_fulladv_save);
+        final Advertisement finalAdvertisement = advertisement;
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //get Data from texts
+
+                EditText tvPreis = (EditText)findViewById(R.id.edit_fulladv_preis);
+
+                db.updateAnzeige(finalAdvertisement.getId(),
+                        finalAdvertisement.getErstelldatum(),
+                        finalAdvertisement.getAblaufdatum(),
+                        Integer.parseInt(tvPreis.getText().toString()),
+                        advertisement_picture);
+                Toast.makeText(FullAdvertisementActivity.this,"Saving sucessful",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
