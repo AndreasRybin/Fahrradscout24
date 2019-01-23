@@ -421,6 +421,40 @@ public class DbHandler extends SQLiteOpenHelper {
         return advertisement;
     }
 
+    //TEST
+    public ArrayList<Advertisement> getAllAdvertisementByPrice(String price) {
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT * FROM " + "Anzeige" + " Where Preis >= " + price;
+        ArrayList<Advertisement> advertisement = new ArrayList<>();
+        Cursor c = database.rawQuery(query, null);
+        if (c != null) {
+            while (c.moveToNext()) {
+                int anzeigeId = c.getInt(c.getColumnIndex("anzeige_id"));
+                String erstelldatum = c.getString(c.getColumnIndex("erstelldatum"));
+                String ablaufdatum = c.getString(c.getColumnIndex("ablaufdatum"));
+                int preis = c.getInt(c.getColumnIndex("preis"));
+                byte[] fahrradbild = c.getBlob(c.getColumnIndex("fahrradbild"));
+                int benutzer_id = c.getInt(c.getColumnIndex("benutzer_id"));
+                int groesse = c.getInt(c.getColumnIndex("groesse"));
+                String farbe = c.getString(c.getColumnIndex("farbe"));
+                if (fahrradbild != null) {
+                    Bitmap fahrradbild_bitmap = BitmapFactory.decodeByteArray(fahrradbild, 0, fahrradbild.length);
+
+                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum, fahrradbild_bitmap, benutzer_id,farbe,groesse);
+                    advertisement.add(emp);
+
+                }
+                else {
+                    Advertisement emp = new Advertisement(anzeigeId, preis, erstelldatum, ablaufdatum, benutzer_id, farbe, groesse);
+                    advertisement.add(emp);
+
+                }
+            }
+            c.close();
+        }
+        return advertisement;
+    }
+    //TEST
     public Bitmap getProfileBild(int id){
         SQLiteDatabase database = this.getReadableDatabase();
         String query = "SELECT profilebild FROM " + "benutzer " + "Where benutzer_id = " + id ;

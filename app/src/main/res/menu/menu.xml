@@ -2,7 +2,35 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent">
-
+    <item
+        android:gravity="center_vertical|start"
+        android:id="@+id/iconFilter"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        app:showAsAction="ifRoom|withText"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        >
+        <menu
+            android:layout_width="match_parent"
+            android:id="@+id/filterMenu"
+            >
+            <item
+                android:id="@+id/filterByColor"
+                android:icon="@drawable/ic_color_lens_black_24dp"
+                android:title="filter by color"
+                android:onClick="filterColor"/>
+            <item
+                android:id="@+id/filterByPrice"
+                android:icon="@drawable/ic_euro_symbol_black_24dp"
+                android:title="filter by price"
+                android:onClick="filterPrice"/>
+            <item
+                android:id="@+id/filterByUser"
+                android:icon="@drawable/ic_account_box_black_24dp"
+                android:title="filter by user"
+                android:onClick="filterUser"/>
+        </menu>
+    </item>
     <item
         android:gravity="center_vertical|start"
         android:id="@+id/iconHamburger"
@@ -13,6 +41,7 @@
         >
         <menu
             android:layout_width="match_parent"
+            android:id="@+id/settingsMenu"
             >
             <item
                 android:id="@+id/menuItemProfile"
