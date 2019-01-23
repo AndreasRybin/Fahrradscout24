@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +40,6 @@ public class AddAnzeigenActivity extends AppCompatActivity {
     private static int RESULT_LOAD_IMAGE = 1; //load picture
 
     String username;
-    Advertisement advertisement;
     DbHandler db;
     Bitmap bitmapimage;
     Benutzer user;
@@ -63,7 +63,7 @@ public class AddAnzeigenActivity extends AppCompatActivity {
         ImageView image = findViewById(R.id.image_add);
 
         Date d = new Date();
-        erstelldatum  = DateFormat.format("dd mm yyyy ", d.getTime());
+        erstelldatum  = DateFormat.format("dd.MM.yyyy ", d.getTime());
         stringErstelldatum = erstelldatum.toString();
 
 
@@ -71,28 +71,55 @@ public class AddAnzeigenActivity extends AppCompatActivity {
 
         Button createBtn = (Button) findViewById(R.id.btn_create);
 
-        final Advertisement finalAdvertisement = advertisement;
         createBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //get Data from texts
-                advertisement.setPreis(Integer.parseInt(preisadd.getText().toString()));
-                advertisement.setFarbe(farbeadd.getText().toString());
-                advertisement.setGroesse(Integer.parseInt(groesseadd.getText().toString()));
-                advertisement.setAblaufdatum(ablaufdatumadd.getText().toString());
-                advertisement.setFahrradbild(bitmapimage);
 
-                db.createAnzeige(advertisement.getFahrradbild(),
-                        stringErstelldatum,
-                        advertisement.getAblaufdatum(),
-                        advertisement.getPreis(),
+                db.createAnzeige(
+                        bitmapimage,
+                        "23.01.2019",
+                        ablaufdatumadd.getText().toString(),
+                        Integer.parseInt(preisadd.getText().toString()),
                         user.getBenutzer_id(),
-                        advertisement.getFarbe(),
-                        advertisement.getGroesse()
+                        farbeadd.getText().toString(),
+                        Integer.parseInt(groesseadd.getText().toString())
                         );
                 Toast.makeText(AddAnzeigenActivity.this,"Creating sucessful",
                         Toast.LENGTH_SHORT).show();
             }
         });
+
+        //load picture
+        // do not execute this when in landscape
+        //int display_mode = getResources().getConfiguration().orientation;
+
+        //if (display_mode == Configuration.ORIENTATION_PORTRAIT) {
+
+        ImageView clickLoadImage = (ImageView) findViewById(R.id.image_add);
+        clickLoadImage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                if (ContextCompat.checkSelfPermission(AddAnzeigenActivity.this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(AddAnzeigenActivity.this,
+                            Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    } else {
+                        ActivityCompat.requestPermissions(AddAnzeigenActivity.this,
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                    }
+                } else {
+                    Intent i = new Intent(
+                            Intent.ACTION_PICK,
+                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(i, RESULT_LOAD_IMAGE);
+                }
+            }
+        });
+        //}
+        //end load picture
     }
 
     /*public boolean onCreateOptionsMenu(Menu menu) {
@@ -177,7 +204,7 @@ public class AddAnzeigenActivity extends AppCompatActivity {
             //converting image to bitmap
             Bitmap img = BitmapFactory.decodeStream(fileInputStream);
 
-            ImageView imageView = (ImageView) findViewById(R.id.iv_fulladv_image);
+            ImageView imageView = (ImageView) findViewById(R.id.image_add);
             Bitmap picture = BitmapFactory.decodeFile(picturePath);
             //resize bitmap
             final int maxSize = 250;
@@ -200,6 +227,7 @@ public class AddAnzeigenActivity extends AppCompatActivity {
         }
 
     }
+
 }
 
 

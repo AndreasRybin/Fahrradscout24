@@ -207,6 +207,7 @@ public class DbHandler extends SQLiteOpenHelper {
         values.put("benutzer_id", benutzer_id);
         values.put("farbe", farbe);
         values.put("groesse", groesse);
+        values.put("preis",preis);
         database.insert("anzeige",null,values);
 
     }

@@ -56,13 +56,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_directions_bike_black_24dp"
         tools:ignore="MissingConstraints"
         tools:srcCompat="@tools:sample/avatars" />
 
     <EditText
         android:id="@+id/edit_add_preis"
         android:layout_width="122dp"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
         android:layout_marginTop="20dp"
         android:hint="preis"
@@ -72,7 +73,7 @@
     <EditText
         android:id="@+id/edit_add_farbe"
         android:layout_width="122dp"
-        android:layout_height="39dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
         android:layout_marginTop="20dp"
         android:hint="farbe"
@@ -82,7 +83,7 @@
     <EditText
         android:id="@+id/edit_add_groesse"
         android:layout_width="122dp"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="90dp"
         android:layout_marginTop="20dp"
         android:hint="groesse"
@@ -92,7 +93,7 @@
     <EditText
         android:id="@+id/edit_add_ablaufdatum"
         android:layout_width="122dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="12dp"
         android:hint="dd:mm:yyyy"
