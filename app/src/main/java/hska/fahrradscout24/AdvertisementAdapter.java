@@ -51,15 +51,19 @@ public class AdvertisementAdapter extends BaseAdapter {
         TextView erstelldatumTextView = convertView.findViewById(R.id.tv_adv_erstelldatum);
         TextView ablaufdatumTextView = convertView.findViewById(R.id.tv_adv_ablaufdatum);
         TextView preisTextView = convertView.findViewById(R.id.tv_adv_preis);
+        ImageView image = convertView.findViewById(R.id.image);
 
 
         Advertisement e = new Advertisement();
         e = empList.get(position);
-        anzeigeIdIdTextView.setText("AnzeigeId: " + String.valueOf(e.getId()));
-        fahrradIdTextView.setText("FahrradId: " + e.getId());
+        anzeigeIdIdTextView.setText("");
+        fahrradIdTextView.setText("fast neu!! jetzt zuschlagen!");
+
         erstelldatumTextView.setText("erstelldatum: " + e.getErstelldatum());
         ablaufdatumTextView.setText("ablaufdatum: " + e.getAblaufdatum());
         preisTextView.setText("preis: " + e.getPreis());
+        if(e.getFahrradbild()!= null){
+        image.setImageBitmap(e.getFahrradbild());}
 
         return convertView;
     }

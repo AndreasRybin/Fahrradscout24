@@ -21,7 +21,8 @@
         android:id="@+id/tv_adv_fahrrad_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="fahrrad_id" />
+        android:text="fahrrad_id"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/tv_adv_erstelldatum"

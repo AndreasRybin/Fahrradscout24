@@ -1,6 +1,7 @@
 package hska.fahrradscout24;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AppComponentFactory;
@@ -188,6 +189,7 @@ public class FullAdvertisementActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
+        menu.findItem(R.id.iconFilter).setVisible(false);
         return true;
     }
     public void profileClick(MenuItem menuItem) {
@@ -197,6 +199,22 @@ public class FullAdvertisementActivity extends AppCompatActivity {
         //myIntent.putExtra("key", value); //Optional parameters
         //String value = intent.getStringExtra("key"); //if it's a string you stored.
         this.startActivity(intentProfile);
+    }
+    public void filterUser(MenuItem menuItem) {
+        //filterusercode todo
+        //Intent intentProfile = new Intent(this, ProfileActivity.class);
+
+
+        //intentProfile.putExtra("username", username); //Optional parameters}
+        //myIntent.putExtra("key", value); //Optional parameters
+        //String value = intent.getStringExtra("key"); //if it's a string you stored.
+        //this.startActivity(intentProfile);
+    }
+    public void filterColor(MenuItem menuItem) {
+
+    }
+    public void filterPrice(MenuItem menuItem) {
+
     }
 
     //getting awnser from permission question

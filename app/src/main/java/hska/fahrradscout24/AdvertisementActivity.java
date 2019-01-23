@@ -2,14 +2,18 @@ package hska.fahrradscout24;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -25,6 +29,7 @@ public class AdvertisementActivity extends AppCompatActivity {
     String username;
     private DbHandler db;
     Advertisement advertisementId;
+
 
     /** Called when the activity is first created. */
     @Override
@@ -71,6 +76,30 @@ public class AdvertisementActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d(msg, "The onResume() event");
+        username = getIntent().getStringExtra("username");
+
+        gridView = (GridView) findViewById(R.id.gv_adv);
+
+        db = new DbHandler(AdvertisementActivity.this);
+        advertisementList = new ArrayList<Advertisement>();
+
+        advertisementList = db.getAllAdvertisement();
+        adapter = new AdvertisementAdapter(AdvertisementActivity.this, advertisementList);
+        gridView.setAdapter(adapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                Intent i = new Intent(getApplicationContext(),FullAdvertisementActivity.class);
+                i.putExtra("position", Integer.toString(position));
+                advertisementId = advertisementList.get(position);
+                i.putExtra("id", Integer.toString(advertisementId.getId()));
+                i.putExtra("username", username); //Optional parameters}
+                startActivity(i);
+            }
+        });
+
     }
 
     /** Called when another activity is taking focus. */
@@ -127,4 +156,52 @@ public class AdvertisementActivity extends AppCompatActivity {
             //String value = intent.getStringExtra("key"); //if it's a string you stored.
             this.startActivity(intentProfile);
     }
+
+    public void filterUser(MenuItem menuItem) {
+        //filterusercode todo
+        //Intent intentProfile = new Intent(this, ProfileActivity.class);
+
+
+        //intentProfile.putExtra("username", username); //Optional parameters}
+        //myIntent.putExtra("key", value); //Optional parameters
+        //String value = intent.getStringExtra("key"); //if it's a string you stored.
+        //this.startActivity(intentProfile);
+    }
+    public void filterColor(MenuItem menuItem) {
+
+    }
+    public void filterPrice(MenuItem menuItem) {
+        advertisementList = new ArrayList<Advertisement>();
+
+        //TEST
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Insert minimum price");
+
+// Set up the input
+        final EditText input = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+// Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                advertisementList = db.getAllAdvertisementByPrice(input.getText().toString());
+                adapter = new AdvertisementAdapter(AdvertisementActivity.this, advertisementList);
+                gridView.setAdapter(adapter);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+        //TEST
+
+    }
+
 }
