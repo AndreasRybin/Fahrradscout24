@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -49,25 +51,22 @@ public class AddAnzeigenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_anzeige);
 
         username = getIntent().getStringExtra("username");
-        user = db.getUserByBenutzername(username);
+
         db = new DbHandler(AddAnzeigenActivity.this);
+        user = db.getUserByBenutzername(username);
 
 
-        EditText preisadd = findViewById(R.id.edit_add_preis);
-        EditText farbeadd = findViewById(R.id.edit_add_farbe);
-        EditText groesseadd = findViewById(R.id.edit_add_groesse);
-        EditText ablaufdatumadd = findViewById(R.id.edit_add_ablaufdatum);
+        final EditText preisadd = findViewById(R.id.edit_add_preis);
+        final EditText farbeadd = findViewById(R.id.edit_add_farbe);
+        final EditText groesseadd = findViewById(R.id.edit_add_groesse);
+        final EditText ablaufdatumadd = findViewById(R.id.edit_add_ablaufdatum);
         ImageView image = findViewById(R.id.image_add);
 
         Date d = new Date();
         erstelldatum  = DateFormat.format("dd mm yyyy ", d.getTime());
         stringErstelldatum = erstelldatum.toString();
 
-        advertisement.setPreis(Integer.parseInt(preisadd.getText().toString()));
-        advertisement.setFarbe(farbeadd.getText().toString());
-        advertisement.setGroesse(Integer.parseInt(groesseadd.getText().toString()));
-        advertisement.setAblaufdatum(ablaufdatumadd.getText().toString());
-        advertisement.setFahrradbild(bitmapimage);
+
 
 
         Button createBtn = (Button) findViewById(R.id.btn_create);
@@ -76,8 +75,11 @@ public class AddAnzeigenActivity extends AppCompatActivity {
         createBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //get Data from texts
-
-                EditText tvPreis = (EditText)findViewById(R.id.edit_fulladv_preis);
+                advertisement.setPreis(Integer.parseInt(preisadd.getText().toString()));
+                advertisement.setFarbe(farbeadd.getText().toString());
+                advertisement.setGroesse(Integer.parseInt(groesseadd.getText().toString()));
+                advertisement.setAblaufdatum(ablaufdatumadd.getText().toString());
+                advertisement.setFahrradbild(bitmapimage);
 
                 db.createAnzeige(advertisement.getFahrradbild(),
                         stringErstelldatum,
@@ -93,11 +95,12 @@ public class AddAnzeigenActivity extends AppCompatActivity {
         });
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
+    /*public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
+        menu.findItem(R.id.iconFilter).setVisible(false);
         return true;
-    }
+    }*/
     public void profileClick(MenuItem menuItem) {
         Intent intentProfile = new Intent(this, ProfileActivity.class);
 
@@ -106,6 +109,18 @@ public class AddAnzeigenActivity extends AppCompatActivity {
         //String value = intent.getStringExtra("key"); //if it's a string you stored.
         this.startActivity(intentProfile);
     }
+    public void filterUser(MenuItem menuItem) {
+        //filterusercode todo
+        //Intent intentProfile = new Intent(this, ProfileActivity.class);
+
+
+        //intentProfile.putExtra("username", username); //Optional parameters}
+        //myIntent.putExtra("key", value); //Optional parameters
+        //String value = intent.getStringExtra("key"); //if it's a string you stored.
+        //this.startActivity(intentProfile);
+    }
+    public void filterColor(MenuItem menuItem) { }
+    public void filterPrice(MenuItem menuItem) { }
 
     //getting awnser from permission question
     @Override

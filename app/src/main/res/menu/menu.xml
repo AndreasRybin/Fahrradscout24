@@ -53,6 +53,11 @@
                 android:icon="@drawable/ic_message_black_24dp"
                 android:title="Open Chat Client"/>
             <item
+                android:id="@+id/menuItemAddAnzeige"
+                android:icon="@drawable/ic_account_box_black_24dp"
+                android:title="Create Add"
+                android:onClick="addAnzeigeClick"/>
+            <item
                 android:id="@+id/menuItemSettingsicon"
                 android:icon="@drawable/ic_settings_black_24dp"
                 android:title="Settings"/>

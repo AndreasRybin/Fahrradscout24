@@ -63,6 +63,12 @@
             android:parentActivityName=".AdvertisementActivity"
             android:windowSoftInputMode="adjustPan">
         </activity>
+        <activity
+            android:name=".AddAnzeigenActivity"
+            android:label="Create Anzeige"
+            android:parentActivityName=".AdvertisementActivity"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
     </application>
 
 </manifest>

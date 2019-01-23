@@ -200,6 +200,15 @@ public class FullAdvertisementActivity extends AppCompatActivity {
         //String value = intent.getStringExtra("key"); //if it's a string you stored.
         this.startActivity(intentProfile);
     }
+
+    public void addAnzeigeClick(MenuItem menuItem) {
+        Intent intentProfile = new Intent(this, AddAnzeigenActivity.class);
+
+        intentProfile.putExtra("username", username); //Optional parameters}
+        //myIntent.putExtra("key", value); //Optional parameters
+        //String value = intent.getStringExtra("key"); //if it's a string you stored.
+        this.startActivity(intentProfile);
+    }
     public void filterUser(MenuItem menuItem) {
         //filterusercode todo
         //Intent intentProfile = new Intent(this, ProfileActivity.class);

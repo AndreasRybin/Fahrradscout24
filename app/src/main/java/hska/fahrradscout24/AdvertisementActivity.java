@@ -156,6 +156,14 @@ public class AdvertisementActivity extends AppCompatActivity {
             //String value = intent.getStringExtra("key"); //if it's a string you stored.
             this.startActivity(intentProfile);
     }
+    public void addAnzeigeClick(MenuItem menuItem) {
+        Intent intentAddAnzeige = new Intent(this, AddAnzeigenActivity.class);
+
+        intentAddAnzeige.putExtra("username", username); //Optional parameters}
+        //myIntent.putExtra("key", value); //Optional parameters
+        //String value = intent.getStringExtra("key"); //if it's a string you stored.
+        this.startActivity(intentAddAnzeige);
+    }
 
     public void filterUser(MenuItem menuItem) {
         //filterusercode todo
