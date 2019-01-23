@@ -1,0 +1,190 @@
+package hska.fahrradscout24;
+
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Date;
+
+
+public class AddAnzeigenActivity extends AppCompatActivity {
+
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1; //load picture
+    private static int RESULT_LOAD_IMAGE = 1; //load picture
+
+    String username;
+    Advertisement advertisement;
+    DbHandler db;
+    Bitmap bitmapimage;
+    Benutzer user;
+    CharSequence erstelldatum;
+    String stringErstelldatum;
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_anzeige);
+
+        username = getIntent().getStringExtra("username");
+        user = db.getUserByBenutzername(username);
+        db = new DbHandler(AddAnzeigenActivity.this);
+
+
+        EditText preisadd = findViewById(R.id.edit_add_preis);
+        EditText farbeadd = findViewById(R.id.edit_add_farbe);
+        EditText groesseadd = findViewById(R.id.edit_add_groesse);
+        EditText ablaufdatumadd = findViewById(R.id.edit_add_ablaufdatum);
+        ImageView image = findViewById(R.id.image_add);
+
+        Date d = new Date();
+        erstelldatum  = DateFormat.format("dd mm yyyy ", d.getTime());
+        stringErstelldatum = erstelldatum.toString();
+
+        advertisement.setPreis(Integer.parseInt(preisadd.getText().toString()));
+        advertisement.setFarbe(farbeadd.getText().toString());
+        advertisement.setGroesse(Integer.parseInt(groesseadd.getText().toString()));
+        advertisement.setAblaufdatum(ablaufdatumadd.getText().toString());
+        advertisement.setFahrradbild(bitmapimage);
+
+
+        Button createBtn = (Button) findViewById(R.id.btn_create);
+
+        final Advertisement finalAdvertisement = advertisement;
+        createBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //get Data from texts
+
+                EditText tvPreis = (EditText)findViewById(R.id.edit_fulladv_preis);
+
+                db.createAnzeige(advertisement.getFahrradbild(),
+                        stringErstelldatum,
+                        advertisement.getAblaufdatum(),
+                        advertisement.getPreis(),
+                        user.getBenutzer_id(),
+                        advertisement.getFarbe(),
+                        advertisement.getGroesse()
+                        );
+                Toast.makeText(AddAnzeigenActivity.this,"Creating sucessful",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    public void profileClick(MenuItem menuItem) {
+        Intent intentProfile = new Intent(this, ProfileActivity.class);
+
+        intentProfile.putExtra("username", username); //Optional parameters}
+        //myIntent.putExtra("key", value); //Optional parameters
+        //String value = intent.getStringExtra("key"); //if it's a string you stored.
+        this.startActivity(intentProfile);
+    }
+
+    //getting awnser from permission question
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent i = new Intent(
+                            Intent.ACTION_PICK,
+                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    //String value = intent.getStringExtra("key"); //if it's a string you stored.
+                    startActivityForResult(i, RESULT_LOAD_IMAGE);
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request.
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //getting filepath
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            //getting image from path
+            File locationOfFile = new
+                    File(Environment.getExternalStorageDirectory().getAbsolutePath()+ "/images");
+            File destination= new File(picturePath);
+            FileInputStream fileInputStream = null;
+            try {
+                fileInputStream = new FileInputStream(destination);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            //converting image to bitmap
+            Bitmap img = BitmapFactory.decodeStream(fileInputStream);
+
+            ImageView imageView = (ImageView) findViewById(R.id.iv_fulladv_image);
+            Bitmap picture = BitmapFactory.decodeFile(picturePath);
+            //resize bitmap
+            final int maxSize = 250;
+            int outWidth;
+            int outHeight;
+            int inWidth = picture.getWidth();
+            int inHeight = picture.getHeight();
+            if(inWidth > inHeight){
+                outWidth = maxSize;
+                outHeight = (inHeight * maxSize) / inWidth;
+            } else {
+                outHeight = maxSize;
+                outWidth = (inWidth * maxSize) / inHeight;
+            }
+
+            //Bitmap resizedBitmap = picture;
+            Bitmap resizedBitmap = Bitmap.createScaledBitmap(picture, outWidth, outHeight, true);
+            imageView.setImageBitmap(resizedBitmap);
+            bitmapimage = resizedBitmap;
+        }
+
+    }
+}
+
+
